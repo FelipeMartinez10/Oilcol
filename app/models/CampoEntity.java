@@ -3,6 +3,7 @@ package models;
 import com.avaje.ebean.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Felipe Martinez on 26/08/2016.
@@ -21,8 +22,8 @@ public class CampoEntity extends Model
     @ManyToOne
     private RegionEntity region;
 
-    //@OneToMany(mappedBy = "campo")
-    //private List<PozoEntity > pozos;
+    @OneToMany(mappedBy = "campo")
+    private List<PozoEntity > pozos;
 
     public CampoEntity()
     {
