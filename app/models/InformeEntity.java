@@ -21,7 +21,7 @@ public class InformeEntity {
     private boolean emergencia;
 
     @ManyToOne
-    private SensorEntity pozo;
+    private SensorEntity sen;
 
     //@OneToMany(mappedBy = "informe")
     //private List<InformeEntity > informes;
@@ -39,14 +39,14 @@ public class InformeEntity {
         this.id = id;
     }
 
-    public InformeEntity(boolean emergencia, double dato, Date fecha, Long id, String tipo, PozoEntity pozo)
+    public InformeEntity(boolean emergencia, double dato, Date fecha, Long id, String tipo, SensorEntity sen)
     {
         this.emergencia = emergencia;
         this.dato = dato;
         this.fecha = fecha;
         this.tipo = tipo;
         this.id = id;
-        this.pozo = pozo;
+        this.sen = sen;
     }
     public Long getId() {
         return id;
@@ -88,12 +88,12 @@ public class InformeEntity {
         this.emergencia = emergencia;
     }
 
-    public PozoEntity getCampo() {
-        return pozo;
+    public SensorEntity getCampo() {
+        return sen;
     }
 
-    public void setCampo(PozoEntity pozo) {
-        this.pozo = pozo;
+    public void setCampo(SensorEntity sen) {
+        this.sen = sen;
     }
     @Override
     public String toString() {
