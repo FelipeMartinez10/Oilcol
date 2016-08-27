@@ -21,7 +21,7 @@ public class InformeEntity {
     private boolean emergencia;
 
     @ManyToOne
-    private PozoEntity pozo;
+    private SensorEntity pozo;
 
     //@OneToMany(mappedBy = "informe")
     //private List<InformeEntity > informes;
