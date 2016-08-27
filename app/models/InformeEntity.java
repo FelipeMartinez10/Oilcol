@@ -1,6 +1,6 @@
 package models;
 
-import com.avaje.ebean.Model.*;
+import com.avaje.ebean.Model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +8,9 @@ import java.util.Date;
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
  */
-public class InformeEntity {
+@Entity
+@Table(name="informeEntity")
+public class InformeEntity extends Model {
 
     public static Finder<Long, InformeEntity> FINDER = new Finder<>(InformeEntity.class);
 

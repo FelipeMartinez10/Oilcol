@@ -1,7 +1,17 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-
+########################################################################################################################
+#
+#                                               ###    ########  ####
+#                                              ## ##   ##     ##  ##
+#                                             ##   ##  ##     ##  ##
+#                                            ##     ## ########   ##
+#                                            ######### ##         ##
+#                                            ##     ## ##         ##
+#                                            ##     ## ##        ####
+#
+########################################################################################################################
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 # An example controller showing how to use dependency injection
@@ -11,3 +21,19 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+########################################################################################################################
+
+#Controlador del campo
+GET     /campos                     controllers.CampoController.getCampos
+GET     /campo/:id                  controllers.CampoController.getCampo(id : Long)
+POST    /campos                     controllers.CampoController.createCampo
+PUT     /campos/:id                 controllers.CampoController.updateCampo(id : Long)
+DELETE  /campo/:id                  controllers.CampoController.deleteCampo(id : Long)
+
+#Controlador del pozo
+GET     /pozos                      controllers.PozoController.getPozos
+GET     /pozo/:id                   controllers.PozoController.getPozo(id : Long)
+POST    /pozos                      controllers.PozoController.createPozo
+PUT     /pozo/:id                   controllers.PozoController.updatePozo(id : Long)
+DELETE  /pozo/:id                   controllers.PozoController.deletePozo(id : Long)

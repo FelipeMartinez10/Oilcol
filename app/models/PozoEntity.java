@@ -1,7 +1,7 @@
 package models;
 
 
-import com.avaje.ebean.Model.*;
+import com.avaje.ebean.Model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +9,9 @@ import java.util.List;
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
  */
-public class PozoEntity {
+@Entity
+@Table(name="pozoEntity")
+public class PozoEntity extends Model {
 
     public static Finder<Long, PozoEntity> FINDER = new Finder<>(PozoEntity.class);
 

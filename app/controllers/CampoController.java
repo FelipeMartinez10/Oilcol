@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.CampoEntity;
 import play.libs.Json;
-import play.mvc.Result;
+import play.mvc.*;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -16,7 +16,7 @@ import static play.libs.Json.toJson;
  * Created by jd.torres11 on 27/08/2016.
  */
 
-public class CampoController extends play.mvc.Controller{
+public class CampoController extends Controller{
 
     public CompletionStage<Result> getCampos() {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;

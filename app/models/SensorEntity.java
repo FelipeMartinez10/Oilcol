@@ -1,12 +1,15 @@
 package models;
 
-import com.avaje.ebean.Model.*;
+import com.avaje.ebean.Model;
 
 import javax.persistence.*;
+
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
  */
-public class SensorEntity {
+@Entity
+@Table(name="sensorEntity")
+public class SensorEntity extends Model {
 
     public static Finder<Long, SensorEntity> FINDER = new Finder<>(SensorEntity.class);
 

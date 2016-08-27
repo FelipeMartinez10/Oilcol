@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="oilColEntity")
-public class OilColEntity
+public class OilColEntity extends Model
 {
     public static Model.Finder<Long,OilColEntity> FINDER = new Model.Finder<>(OilColEntity.class);
 
