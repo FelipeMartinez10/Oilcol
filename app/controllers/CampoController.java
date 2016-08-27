@@ -1,0 +1,86 @@
+package controllers;
+
+import models.CampoEntity;
+import org.springframework.stereotype.Controller;
+
+/**
+ * Created by jd.torres11 on 27/08/2016.
+ */
+import dispatchers.AkkaDispatcher;
+import java.util.concurrent.CompletableFuture;
+import static play.libs.Json.toJson;
+import akka.dispatch.MessageDispatcher;
+import play.mvc.*;
+import java.util.concurrent.CompletionStage;
+import play.libs.Json;
+import com.fasterxml.jackson.databind.JsonNode;
+
+public class CampoController extends Controller{
+
+    public CompletionStage<Result> getCampos() {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.
+                supplyAsync(() -> { return CampoEntity.FINDER.all(); } ,jdbcDispatcher)
+                .thenApply(campoEntities -> {return ok(toJson(campoEntities));}
+                );
+    }
+    public CompletionStage<Result> getCampo(Long idP) {
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.
+                supplyAsync(() -> { return CampoEntity.FINDER.byId(idP); } ,jdbcDispatcher)
+                .thenApply(itemEntities -> {return ok(toJson(itemEntities));}
+                );
+    }
+    public CompletionStage<Result> createCampo(){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode nCamp = request().body().asJson();
+        CampoEntity campo = Json.fromJson( nCamp , CampoEntity.class ) ;
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    campo.save();
+                    return campo;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
+    public CompletionStage<Result> deleteCampo(Long idP){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    CampoEntity campo = CampoEntity.FINDER.byId(idP);
+                    campo.delete();
+                    return campo;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
+    public CompletionStage<Result> updateCampo( Long idP){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode nCamp = request().body().asJson();
+        CampoEntity camp = Json.fromJson( nCamp , CampoEntity.class ) ;
+        CampoEntity antiguo = CampoEntity.FINDER.byId(idP);
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    antiguo.setId(camp.getId());
+                    antiguo.setName(camp.getName());
+                    antiguo.setRegion(camp.getRegion());
+                    antiguo.update();
+                    return antiguo;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
+}
