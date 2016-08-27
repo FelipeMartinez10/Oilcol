@@ -16,7 +16,7 @@ public class PozoEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Pozo")
     private Long id;
-    private String estado;
+    private EstadoPozo estado;
 
     @ManyToOne
     private CampoEntity campo;
@@ -27,7 +27,7 @@ public class PozoEntity {
     public PozoEntity()
     {
         this.id=null;
-        this.estado ="NO NAME";
+        this.estado = null;
     }
     public PozoEntity(Long id) {
         this();
@@ -38,7 +38,7 @@ public class PozoEntity {
     {
         this.campo = campo;
         this.id = id;
-        this.estado = estado;
+        this.setEstado(estado);
     }
     public Long getId() {
         return id;
@@ -49,11 +49,19 @@ public class PozoEntity {
     }
 
     public String getEstado() {
-        return estado;
+        return estado.toString();
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        if(estado.equalsIgnoreCase(EstadoPozo.Abierto.toString()))
+            this.estado = EstadoPozo.Abierto;
+        else if(estado.equalsIgnoreCase(EstadoPozo.Clausurado.toString()))
+            this.estado = EstadoPozo.Clausurado;
+        else if(estado.equalsIgnoreCase(EstadoPozo.Parado.toString()))
+            this.estado = EstadoPozo.Parado;
+        else
+            this.estado = EstadoPozo.Produccion;
+
     }
 
     public CampoEntity getCampo() {
@@ -67,7 +75,7 @@ public class PozoEntity {
     public String toString() {
         return "PozoEntity{" +
                 "id=" + id +
-                ", estado='" + estado + '\'' +
+                ", estado='" + estado.toString() + '\'' +
                 '}';
     }
 }
