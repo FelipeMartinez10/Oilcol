@@ -14,6 +14,7 @@ public class SensorEntity {
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Pozo")
     private Long id;
     private String tipo;
+    private boolean emergencia;
 
     @ManyToOne
     private PozoEntity pozo;
@@ -23,6 +24,7 @@ public class SensorEntity {
 
     public SensorEntity()
     {
+        this.emergencia = false;
         this.id=null;
         this.tipo ="NO NAME";
     }
@@ -31,8 +33,9 @@ public class SensorEntity {
         this.id = id;
     }
 
-    public SensorEntity(Long id, String tipo, PozoEntity pozo)
+    public SensorEntity(boolean emergencia, Long id, String tipo, PozoEntity pozo)
     {
+        this.emergencia = emergencia;
         this.tipo = tipo;
         this.id = id;
         this.pozo = pozo;
@@ -53,6 +56,14 @@ public class SensorEntity {
         this.tipo = tipo;
     }
 
+    public boolean getEmergencia() {
+        return emergencia;
+    }
+
+    public void setEmergencia(boolean emergencia) {
+        this.emergencia = emergencia;
+    }
+
     public PozoEntity getCampo() {
         return pozo;
     }
@@ -64,6 +75,7 @@ public class SensorEntity {
     public String toString() {
         return "SensorEntity{" +
                 "id=" + id +
+                "emergencia=" + emergencia +
                 ", tipo='" + tipo + '\'' +
                 '}';
     }
