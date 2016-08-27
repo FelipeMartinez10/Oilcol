@@ -4,6 +4,8 @@ package models;
 import com.avaje.ebean.Model.*;
 
 import javax.persistence.*;
+import java.util.List;
+
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
  */
@@ -19,8 +21,8 @@ public class PozoEntity {
     @ManyToOne
     private CampoEntity campo;
 
-    //@OneToMany(mappedBy = "sensor")
-    //private List<SensorEntity > sensores;
+    @OneToMany(mappedBy = "sensor")
+    private List<SensorEntity > sensores;
 
     public PozoEntity()
     {
