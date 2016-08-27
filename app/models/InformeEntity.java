@@ -60,7 +60,7 @@ public class InformeEntity {
         return dato;
     }
 
-    public void setDato(double id) {
+    public void setDato(double dato) {
         this.dato = dato;
     }
 
@@ -68,7 +68,7 @@ public class InformeEntity {
         return fecha;
     }
 
-    public void setFecha(Date id) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
