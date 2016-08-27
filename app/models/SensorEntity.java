@@ -11,20 +11,18 @@ public class SensorEntity {
     public static Finder<Long, SensorEntity> FINDER = new Finder<>(SensorEntity.class);
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Pozo")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Sensor")
     private Long id;
     private String tipo;
-    private boolean emergencia;
 
     @ManyToOne
     private PozoEntity pozo;
 
-    //@OneToMany(mappedBy = "sensor")
-    //private List<SensorEntity > sensores;
+    //@OneToMany(mappedBy = "informe")
+    //private List<InformeEntity > informes;
 
     public SensorEntity()
     {
-        this.emergencia = false;
         this.id=null;
         this.tipo ="NO NAME";
     }
@@ -33,9 +31,8 @@ public class SensorEntity {
         this.id = id;
     }
 
-    public SensorEntity(boolean emergencia, Long id, String tipo, PozoEntity pozo)
+    public SensorEntity(Long id, String tipo, PozoEntity pozo)
     {
-        this.emergencia = emergencia;
         this.tipo = tipo;
         this.id = id;
         this.pozo = pozo;
@@ -48,20 +45,12 @@ public class SensorEntity {
         this.id = id;
     }
 
-    public String getEstado() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setEstado(String tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public boolean getEmergencia() {
-        return emergencia;
-    }
-
-    public void setEmergencia(boolean emergencia) {
-        this.emergencia = emergencia;
     }
 
     public PozoEntity getCampo() {
@@ -75,7 +64,6 @@ public class SensorEntity {
     public String toString() {
         return "SensorEntity{" +
                 "id=" + id +
-                "emergencia=" + emergencia +
                 ", tipo='" + tipo + '\'' +
                 '}';
     }
