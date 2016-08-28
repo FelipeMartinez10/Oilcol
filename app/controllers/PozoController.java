@@ -43,8 +43,43 @@ public class PozoController extends Controller {
                     return pozo;
                 }
         ).thenApply(
-                CampoEntity -> {
-                    return ok(Json.toJson(CampoEntity));
+                pozoEntity -> {
+                    return ok(Json.toJson(pozoEntity));
+                }
+        );
+    }
+    public CompletionStage<Result> deletePozo(Long idP){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    PozoEntity pozo = PozoEntity.FINDER.byId(idP);
+                    pozo.delete();
+                    return pozo;
+                }
+        ).thenApply(
+                pozoEntities -> {
+                    return ok(Json.toJson(pozoEntities));
+                }
+        );
+    }
+    public CompletionStage<Result> updatePozo( Long idP){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+        PozoEntity pozo = Json.fromJson( n , PozoEntity.class ) ;
+        PozoEntity antiguo = PozoEntity.FINDER.byId(idP);
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    antiguo.setId(pozo.getId());
+                    antiguo.setCampo(pozo.getCampo());
+                    antiguo.setEstado(pozo.getEstado());
+                    antiguo.update();
+                    return antiguo;
+                }
+        ).thenApply(
+                pozoEntities -> {
+                    return ok(Json.toJson(pozoEntities));
                 }
         );
     }

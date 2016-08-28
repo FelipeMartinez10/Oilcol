@@ -24,6 +24,20 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 ########################################################################################################################
 
+#Controlador del Usuario
+GET     /users                      controllers.UsuarioController.getUsuarios
+GET     /user/:id                   controllers.UsuarioController.getUsuario(id : Long)
+POST    /users                      controllers.UsuarioController.createUsuario
+PUT     /user/:id                   controllers.UsuarioController.updateUsuario(id : Long)
+DELETE  /user/:id                   controllers.UsuarioController.deleteUsuario(id : Long)
+
+#Controlador de la region
+GET     /regiones                   controllers.RegionController.getRegiones
+GET     /region/:id                 controllers.RegionController.getRegion(id : Long)
+POST    /regiones                   controllers.RegionController.createRegion
+PUT     /region/:id                 controllers.RegionController.updateRegion(id : Long)
+DELETE  /region/:id                 controllers.RegionController.deleteRegion(id : Long)
+
 #Controlador del campo
 GET     /campos                     controllers.CampoController.getCampos
 GET     /campo/:id                  controllers.CampoController.getCampo(id : Long)
@@ -37,3 +51,4 @@ GET     /pozo/:id                   controllers.PozoController.getPozo(id : Long
 POST    /pozos                      controllers.PozoController.createPozo
 PUT     /pozo/:id                   controllers.PozoController.updatePozo(id : Long)
 DELETE  /pozo/:id                   controllers.PozoController.deletePozo(id : Long)
+
