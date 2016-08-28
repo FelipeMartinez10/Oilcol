@@ -27,28 +27,34 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 #Controlador del Usuario
 GET     /users                      controllers.UsuarioController.getUsuarios
 GET     /user/:id                   controllers.UsuarioController.getUsuario(id : Long)
-POST    /users                      controllers.UsuarioController.createUsuario
+POST    /user                       controllers.UsuarioController.createUsuario
 PUT     /user/:id                   controllers.UsuarioController.updateUsuario(id : Long)
 DELETE  /user/:id                   controllers.UsuarioController.deleteUsuario(id : Long)
 
 #Controlador de la region
 GET     /regiones                   controllers.RegionController.getRegiones
 GET     /region/:id                 controllers.RegionController.getRegion(id : Long)
-POST    /regiones                   controllers.RegionController.createRegion
+POST    /region                     controllers.RegionController.createRegion
 PUT     /region/:id                 controllers.RegionController.updateRegion(id : Long)
 DELETE  /region/:id                 controllers.RegionController.deleteRegion(id : Long)
 
 #Controlador del campo
 GET     /campos                     controllers.CampoController.getCampos
 GET     /campo/:id                  controllers.CampoController.getCampo(id : Long)
-POST    /campos                     controllers.CampoController.createCampo
+POST    /campo                      controllers.CampoController.createCampo
 PUT     /campos/:id                 controllers.CampoController.updateCampo(id : Long)
 DELETE  /campo/:id                  controllers.CampoController.deleteCampo(id : Long)
 
 #Controlador del pozo
 GET     /pozos                      controllers.PozoController.getPozos
 GET     /pozo/:id                   controllers.PozoController.getPozo(id : Long)
-POST    /pozos                      controllers.PozoController.createPozo
+POST    /pozo                       controllers.PozoController.createPozo
 PUT     /pozo/:id                   controllers.PozoController.updatePozo(id : Long)
 DELETE  /pozo/:id                   controllers.PozoController.deletePozo(id : Long)
 
+#Controlador del sensor
+GET     /sensores                   controllers.SensorController.getSensores
+GET     /sensor/:id                 controllers.SensorController.getSensor(id : Long)
+POST    /sensor                     controllers.SensorController.createSensor
+PUT     /sensor/:id                 controllers.SensorController.updateSensor(id : Long)
+DELETE  /sensor/:id                 controllers.SensorController.deleteSensor(id : Long)
