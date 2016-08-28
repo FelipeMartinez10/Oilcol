@@ -58,3 +58,10 @@ GET     /sensor/:id                 controllers.SensorController.getSensor(id : 
 POST    /sensor                     controllers.SensorController.createSensor
 PUT     /sensor/:id                 controllers.SensorController.updateSensor(id : Long)
 DELETE  /sensor/:id                 controllers.SensorController.deleteSensor(id : Long)
+
+#Controlador del Reporte
+GET     /reportes                   controllers.ReporteController.getReportes
+GET     /reporte/:id                 controllers.ReporteController.getReporte(id : Long)
+POST    /reporte                     controllers.ReporteController.createReporte
+PUT     /reporte/:id                 controllers.ReporteController.updateReporte(id : Long)
+DELETE  /reporte/:id                 controllers.ReporteController.deleteReporte(id : Long)
