@@ -66,6 +66,8 @@ public class RegionEntity extends Model
         this.campos = campos;
     }
 
+    public void addCampo(CampoEntity nuevo){ campos.add(nuevo);}
+
     @Override
     public String toString() {
         return "RegionEntity{" +
