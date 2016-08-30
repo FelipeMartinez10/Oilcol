@@ -42,6 +42,7 @@ DELETE  /region/:id                 controllers.RegionController.deleteRegion(id
 GET     /campos                     controllers.CampoController.getCampos
 GET     /campo/:id                  controllers.CampoController.getCampo(id : Long)
 POST    /campo                      controllers.CampoController.createCampo
+POST    /region/:id/campo           controllers.CampoController.createCampoEnRegion(id: Long)
 PUT     /campos/:id                 controllers.CampoController.updateCampo(id : Long)
 DELETE  /campo/:id                  controllers.CampoController.deleteCampo(id : Long)
 
