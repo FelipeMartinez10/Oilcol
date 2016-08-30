@@ -23,7 +23,7 @@ public class PozoEntity extends Model {
     @ManyToOne
     private CampoEntity campo;
 
-    @OneToMany(mappedBy = "sensor")
+    @OneToMany(mappedBy = "pozo")
     private List<SensorEntity > sensores;
 
     public PozoEntity()
