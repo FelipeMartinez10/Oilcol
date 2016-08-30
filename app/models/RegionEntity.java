@@ -23,6 +23,9 @@ public class RegionEntity extends Model
     @OneToMany(mappedBy = "region")
     private List<CampoEntity> campos;
 
+    @ManyToOne
+    private OilColEntity oilCol;
+
     public RegionEntity() {
         this.campos = new ArrayList<CampoEntity>();
         this.id=null;
