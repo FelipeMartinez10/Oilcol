@@ -3,6 +3,7 @@ package models;
 import com.avaje.ebean.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Felipe Martinez on 26/08/2016.
@@ -21,6 +22,9 @@ public class UsuarioEntity extends Model
 
     @ManyToOne
     private OilColEntity oilCol;
+
+    @OneToOne
+    private CampoEntity campo;
 
     public UsuarioEntity()
     {
@@ -69,6 +73,13 @@ public class UsuarioEntity extends Model
             this.tipo = TipoUsuario.JefeDeCampo;
         else
             this.tipo = TipoUsuario.JefeDeProduccion;
+    }
+    public CampoEntity getCampo() {
+        return campo;
+    }
+
+    public void setCampo(CampoEntity campo) {
+        this.campo = campo;
     }
 
     @Override

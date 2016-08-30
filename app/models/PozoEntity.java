@@ -65,6 +65,14 @@ public class PozoEntity extends Model {
             this.estado = EstadoPozo.Produccion;
 
     }
+    public List<SensorEntity> getSensores()
+    {
+        return sensores;
+    }
+    public void setSensores(List<SensorEntity> pSensores)
+    {
+        sensores=pSensores;
+    }
 
     public CampoEntity getCampo() {
         return campo;

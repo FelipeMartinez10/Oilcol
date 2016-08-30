@@ -64,6 +64,14 @@ public class CampoEntity extends Model
     public void setRegion(RegionEntity region) {
         this.region = region;
     }
+    public List<PozoEntity> getSensores()
+    {
+        return pozos;
+    }
+    public void setSensores(List<PozoEntity> pPozos)
+    {
+        pozos=pPozos;
+    }
     @Override
     public String toString() {
         return "CampoEntity{" +
