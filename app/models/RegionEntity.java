@@ -38,8 +38,10 @@ public class RegionEntity extends Model
 
     public RegionEntity(Long id, String name)
     {
+        this();
         this.id = id;
         this.name = name;
+
     }
 
     public Long getId() {

@@ -4,6 +4,7 @@ import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.CampoEntity;
+import models.RegionEntity;
 import play.libs.Json;
 import play.mvc.*;
 
@@ -40,6 +41,25 @@ public class CampoController extends Controller{
         CampoEntity campo = Json.fromJson( nCamp , CampoEntity.class ) ;
         return CompletableFuture.supplyAsync(
                 ()->{
+                    campo.save();
+                    return campo;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
+    public CompletionStage<Result> createCampoEnRegion(Long idRegion){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode nCamp = request().body().asJson();
+        CampoEntity campo = Json.fromJson( nCamp , CampoEntity.class );
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    RegionEntity region = RegionEntity.FINDER.byId(idRegion);
+                    region.addCampo(campo);
+                    campo.setRegion(region);
+                    region.update();
                     campo.save();
                     return campo;
                 }

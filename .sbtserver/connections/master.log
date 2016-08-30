@@ -1,22 +1,19 @@
-New log file opened at Tue Aug 30 15:13:24 COT 2016 by 126704@ISIS2603-00
-Taking next connection to: 57897
-New client attempting to connect on port: 57898-57897
-  Address = /172.24.42.139:57897
-This client on port 57898 has uuid d49c58fd-7bf2-4d1b-b8c8-4f90043212e7 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
-Connected Clients: play-fork-run-d49c58fd-7bf2-4d1b-b8c8-4f90043212e7
-Taking next connection to: 57897
+New log file opened at Tue Aug 30 18:34:52 COT 2016 by 86216@ISIS2503-37
+Taking next connection to: 49721
+New client attempting to connect on port: 49722-49721
+  Address = /172.24.42.111:49721
+This client on port 49722 has uuid 217c124b-5869-4e29-b941-e050167a4f0b configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-217c124b-5869-4e29-b941-e050167a4f0b
+Taking next connection to: 49721
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 57897
+Taking next connection to: 49721
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 57897
+Taking next connection to: 49721
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 57897
+Taking next connection to: 49721
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 57897
-Checking to see if clients are empty...
-We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 57897
+Taking next connection to: 49721
