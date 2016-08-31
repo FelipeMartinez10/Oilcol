@@ -25,7 +25,7 @@ public class InformeEntity extends Model {
 
     @ManyToOne
     @JsonBackReference
-    private SensorEntity sen;
+    private SensorEntity sensor;
 
     //@OneToMany(mappedBy = "informe")
     //private List<InformeEntity > informes;
@@ -50,7 +50,7 @@ public class InformeEntity extends Model {
         this.fecha = fecha;
         this.tipo = tipo;
         this.id = id;
-        this.sen = sen;
+        this.sensor = sen;
     }
     public Long getId() {
         return id;
@@ -93,11 +93,11 @@ public class InformeEntity extends Model {
     }
 
     public SensorEntity getCampo() {
-        return sen;
+        return sensor;
     }
 
     public void setCampo(SensorEntity sen) {
-        this.sen = sen;
+        this.sensor = sen;
     }
     @Override
     public String toString() {

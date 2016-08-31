@@ -24,7 +24,7 @@ public class SensorEntity extends Model {
     @JsonBackReference
     private PozoEntity pozo;
 
-    @OneToMany(mappedBy = "informe")
+    @OneToMany(mappedBy = "sensor")
     private List<InformeEntity > informes;
 
     public SensorEntity()
