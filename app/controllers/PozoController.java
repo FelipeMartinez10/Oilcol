@@ -3,6 +3,7 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
+import models.CampoEntity;
 import models.PozoEntity;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -48,6 +49,27 @@ public class PozoController extends Controller {
                 }
         );
     }
+
+    public CompletionStage<Result> createPozoEnCampo(Long idCampo){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+        PozoEntity pozo = Json.fromJson( n , PozoEntity.class ) ;
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    CampoEntity campo = CampoEntity.FINDER.byId(idCampo);
+                    campo.addPozo(pozo);
+                    pozo.setCampo(campo);
+                    campo.update();
+                    pozo.save();
+                    return pozo;
+                }
+        ).thenApply(
+                pozoEntity -> {
+                    return ok(Json.toJson(pozoEntity));
+                }
+        );
+    }
+
     public CompletionStage<Result> deletePozo(Long idP){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
 

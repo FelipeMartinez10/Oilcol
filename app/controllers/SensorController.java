@@ -3,6 +3,7 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
+import models.PozoEntity;
 import models.SensorEntity;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -34,6 +35,26 @@ public class SensorController extends Controller {
                 .thenApply(sensores -> {return ok(toJson(sensores));}
                 );
     }
+    public CompletionStage<Result> createSensorEnPozo(Long idPozo){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+        SensorEntity sensor = Json.fromJson( n , SensorEntity.class ) ;
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    PozoEntity pozo = PozoEntity.FINDER.byId(idPozo);
+                    pozo.addSensor(sensor);
+                    sensor.setPozo(pozo);
+                    pozo.update();
+                    sensor.save();
+                    return sensor;
+                }
+        ).thenApply(
+                sensores -> {
+                    return ok(Json.toJson(sensores));
+                }
+        );
+    }
+
     public CompletionStage<Result> createSensor(){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
         JsonNode n = request().body().asJson();
@@ -49,6 +70,7 @@ public class SensorController extends Controller {
                 }
         );
     }
+
     public CompletionStage<Result> deleteSensor(Long idP){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
 
@@ -73,7 +95,7 @@ public class SensorController extends Controller {
         return CompletableFuture.supplyAsync(
                 ()->{
                     antiguo.setId(sensor.getId());
-                    antiguo.setCampo(sensor.getCampo());
+                    antiguo.setPozo(sensor.getPozo());
                     antiguo.setTipo(sensor.getTipo());
                     antiguo.update();
                     return antiguo;

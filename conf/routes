@@ -49,6 +49,7 @@ DELETE  /campo/:id                  controllers.CampoController.deleteCampo(id :
 #Controlador del pozo
 GET     /pozos                      controllers.PozoController.getPozos
 GET     /pozo/:id                   controllers.PozoController.getPozo(id : Long)
+POST    /campos/:id/pozo            controllers.PozoController.createPozoEnCampo(id : Long)
 POST    /pozo                       controllers.PozoController.createPozo
 PUT     /pozo/:id                   controllers.PozoController.updatePozo(id : Long)
 DELETE  /pozo/:id                   controllers.PozoController.deletePozo(id : Long)
@@ -56,6 +57,7 @@ DELETE  /pozo/:id                   controllers.PozoController.deletePozo(id : L
 #Controlador del sensor
 GET     /sensores                   controllers.SensorController.getSensores
 GET     /sensor/:id                 controllers.SensorController.getSensor(id : Long)
+POST    /pozo/:id/sensor            controllers.SensorController.createSensorEnPozo(id : Long)
 POST    /sensor                     controllers.SensorController.createSensor
 PUT     /sensor/:id                 controllers.SensorController.updateSensor(id : Long)
 DELETE  /sensor/:id                 controllers.SensorController.deleteSensor(id : Long)
@@ -63,6 +65,7 @@ DELETE  /sensor/:id                 controllers.SensorController.deleteSensor(id
 #Controlador del Informe
 GET     /informes                   controllers.InformeController.getInformes
 GET     /informe/:id                controllers.InformeController.getInforme(id : Long)
+POST    /sensor/:id/informe         controllers.InformeController.createInformeDeSensor(id : Long)
 POST    /informe                    controllers.InformeController.createInforme
 PUT     /informe/:id                controllers.InformeController.updateInforme(id : Long)
 DELETE  /informe/:id                controllers.InformeController.deleteInforme(id : Long)

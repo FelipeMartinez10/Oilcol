@@ -4,6 +4,7 @@ import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.InformeEntity;
+import models.SensorEntity;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -47,6 +48,27 @@ public class InformeController extends Controller {
                 }
         );
     }
+
+    public CompletionStage<Result> createInformeDeSensor(Long idSensor){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode n = request().body().asJson();
+        InformeEntity informe = Json.fromJson( n , InformeEntity.class ) ;
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    SensorEntity sensor = SensorEntity.FINDER.byId(idSensor);
+                    sensor.addInforme(informe);
+                    informe.setCampo(sensor);
+                    sensor.update();
+                    informe.save();
+                    return informe;
+                }
+        ).thenApply(
+                informes -> {
+                    return ok(Json.toJson(informes));
+                }
+        );
+    }
+
     public CompletionStage<Result> deleteInforme(Long idP){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
 

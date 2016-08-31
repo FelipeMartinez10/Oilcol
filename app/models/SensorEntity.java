@@ -1,8 +1,10 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
@@ -19,10 +21,11 @@ public class SensorEntity extends Model {
     private String tipo;
 
     @ManyToOne
+    @JsonBackReference
     private PozoEntity pozo;
 
-    //@OneToMany(mappedBy = "informe")
-    //private List<InformeEntity > informes;
+    @OneToMany(mappedBy = "informe")
+    private List<InformeEntity > informes;
 
     public SensorEntity()
     {
@@ -56,13 +59,15 @@ public class SensorEntity extends Model {
         this.tipo = tipo;
     }
 
-    public PozoEntity getCampo() {
+    public PozoEntity getPozo() {
         return pozo;
     }
 
-    public void setCampo(PozoEntity pozo) {
+    public void setPozo(PozoEntity pozo) {
         this.pozo = pozo;
     }
+
+    public void addInforme(InformeEntity nuevo){informes.add(nuevo);}
     @Override
     public String toString() {
         return "SensorEntity{" +
