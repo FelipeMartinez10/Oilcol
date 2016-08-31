@@ -19,7 +19,8 @@ public class CampoEntity extends Model
     private Long id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade=ALL)
+    @JsonBackReference
     private RegionEntity region;
 
     @OneToMany(mappedBy = "campo")
