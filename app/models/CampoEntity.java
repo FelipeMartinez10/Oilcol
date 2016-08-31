@@ -1,6 +1,8 @@
 package models;
 
+import akka.io.TcpConnection;
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +21,7 @@ public class CampoEntity extends Model
     private Long id;
     private String name;
 
-    @ManyToOne(cascade=ALL)
+    @ManyToOne(cascade= CascadeType.ALL)
     @JsonBackReference
     private RegionEntity region;
 
@@ -61,6 +63,8 @@ public class CampoEntity extends Model
     public RegionEntity getRegion() {
         return region;
     }
+
+    public void addPozo(PozoEntity nuevo){pozos.add(nuevo);}
 
     public void setRegion(RegionEntity region) {
         this.region = region;
