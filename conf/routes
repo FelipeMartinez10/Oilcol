@@ -29,6 +29,7 @@ GET     /users                      controllers.UsuarioController.getUsuarios
 GET     /user/:id                   controllers.UsuarioController.getUsuario(id : Long)
 POST    /user                       controllers.UsuarioController.createUsuario
 PUT     /user/:id                   controllers.UsuarioController.updateUsuario(id : Long)
+PUT     /campo/:id/user/:idp        controllers.UsuarioController.asignarCampo(id : Long, idp: Long)
 DELETE  /user/:id                   controllers.UsuarioController.deleteUsuario(id : Long)
 
 #Controlador de la region

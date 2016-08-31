@@ -3,6 +3,7 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
+import models.CampoEntity;
 import models.UsuarioEntity;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -74,6 +75,23 @@ public class UsuarioController extends Controller {
                     antiguo.setId(user.getId());
                     antiguo.setName(user.getName());
                     antiguo.setTipo(user.getTipo());
+                    antiguo.update();
+                    return antiguo;
+                }
+        ).thenApply(
+                userEntities -> {
+                    return ok(Json.toJson(userEntities));
+                }
+        );
+    }
+
+    public CompletionStage<Result> asignarCampo( Long idCampo, Long idUser){
+        UsuarioEntity antiguo = UsuarioEntity.FINDER.byId(idUser);
+        CampoEntity campo = CampoEntity.FINDER.byId(idCampo);
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    antiguo.setCampo(campo);
                     antiguo.update();
                     return antiguo;
                 }
