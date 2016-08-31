@@ -18,7 +18,7 @@ public class SensorEntity extends Model {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Sensor")
     private Long id;
-    private String tipo;
+    private TipoSensor tipo;
 
     @ManyToOne
     @JsonBackReference
@@ -30,7 +30,7 @@ public class SensorEntity extends Model {
     public SensorEntity()
     {
         this.id=null;
-        this.tipo ="NO NAME";
+        this.tipo = null;
     }
     public SensorEntity(Long id) {
         this();
@@ -39,7 +39,7 @@ public class SensorEntity extends Model {
 
     public SensorEntity(Long id, String tipo, PozoEntity pozo)
     {
-        this.tipo = tipo;
+        this.setTipo(tipo);
         this.id = id;
         this.pozo = pozo;
     }
@@ -52,11 +52,16 @@ public class SensorEntity extends Model {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo.toString();
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if(TipoSensor.BarrilesCrudo.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.BarrilesCrudo;
+        else if(TipoSensor.ConsumoEnergetico.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.ConsumoEnergetico;
+        else
+            this.tipo = TipoSensor.TemperaturaBomba;
     }
 
     public PozoEntity getPozo() {
@@ -72,7 +77,7 @@ public class SensorEntity extends Model {
     public String toString() {
         return "SensorEntity{" +
                 "id=" + id +
-                ", tipo='" + tipo + '\'' +
+                ", tipo='" + tipo.toString() + '\'' +
                 '}';
     }
 }

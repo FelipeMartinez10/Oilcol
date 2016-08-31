@@ -54,8 +54,9 @@ create sequence Reporte;
 
 create table sensorentity (
   id                            bigint not null,
-  tipo                          varchar(255),
+  tipo                          integer,
   pozo_id                       bigint,
+  constraint ck_sensorentity_tipo check (tipo in (0,1,2)),
   constraint pk_sensorentity primary key (id)
 );
 create sequence Sensor;
