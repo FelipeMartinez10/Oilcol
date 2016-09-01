@@ -78,7 +78,9 @@ public class UsuarioEntity extends Model
     }
 
     public void setCampo(CampoEntity campo) {
-        this.campo = campo;
+        if(this.tipo.equals(TipoUsuario.JefeDeCampo))
+            this.campo = campo;
+        else this.campo = null;
     }
 
     @Override

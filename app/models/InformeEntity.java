@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,7 +24,8 @@ public class InformeEntity extends Model {
     private boolean emergencia;
 
     @ManyToOne
-    private SensorEntity sen;
+    @JsonBackReference
+    private SensorEntity sensor;
 
     //@OneToMany(mappedBy = "informe")
     //private List<InformeEntity > informes;
@@ -48,7 +50,7 @@ public class InformeEntity extends Model {
         this.fecha = fecha;
         this.tipo = tipo;
         this.id = id;
-        this.sen = sen;
+        this.sensor = sen;
     }
     public Long getId() {
         return id;
@@ -91,11 +93,11 @@ public class InformeEntity extends Model {
     }
 
     public SensorEntity getCampo() {
-        return sen;
+        return sensor;
     }
 
     public void setCampo(SensorEntity sen) {
-        this.sen = sen;
+        this.sensor = sen;
     }
     @Override
     public String toString() {

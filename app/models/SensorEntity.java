@@ -1,8 +1,10 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
@@ -16,18 +18,19 @@ public class SensorEntity extends Model {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Sensor")
     private Long id;
-    private String tipo;
+    private TipoSensor tipo;
 
     @ManyToOne
+    @JsonBackReference
     private PozoEntity pozo;
 
-    //@OneToMany(mappedBy = "informe")
-    //private List<InformeEntity > informes;
+    @OneToMany(mappedBy = "sensor")
+    private List<InformeEntity > informes;
 
     public SensorEntity()
     {
         this.id=null;
-        this.tipo ="NO NAME";
+        this.tipo = null;
     }
     public SensorEntity(Long id) {
         this();
@@ -36,7 +39,7 @@ public class SensorEntity extends Model {
 
     public SensorEntity(Long id, String tipo, PozoEntity pozo)
     {
-        this.tipo = tipo;
+        this.setTipo(tipo);
         this.id = id;
         this.pozo = pozo;
     }
@@ -49,25 +52,32 @@ public class SensorEntity extends Model {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo.toString();
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if(TipoSensor.BarrilesCrudo.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.BarrilesCrudo;
+        else if(TipoSensor.ConsumoEnergetico.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.ConsumoEnergetico;
+        else
+            this.tipo = TipoSensor.TemperaturaBomba;
     }
 
-    public PozoEntity getCampo() {
+    public PozoEntity getPozo() {
         return pozo;
     }
 
-    public void setCampo(PozoEntity pozo) {
+    public void setPozo(PozoEntity pozo) {
         this.pozo = pozo;
     }
+
+    public void addInforme(InformeEntity nuevo){informes.add(nuevo);}
     @Override
     public String toString() {
         return "SensorEntity{" +
                 "id=" + id +
-                ", tipo='" + tipo + '\'' +
+                ", tipo='" + tipo.toString() + '\'' +
                 '}';
     }
 }

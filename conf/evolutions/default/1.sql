@@ -17,7 +17,7 @@ create table informeentity (
   dato                          float,
   fecha                         timestamp,
   emergencia                    boolean,
-  sen_id                        bigint,
+  sensor_id                     bigint,
   constraint pk_informeentity primary key (id)
 );
 create sequence Informe;
@@ -54,8 +54,9 @@ create sequence Reporte;
 
 create table sensorentity (
   id                            bigint not null,
-  tipo                          varchar(255),
+  tipo                          integer,
   pozo_id                       bigint,
+  constraint ck_sensorentity_tipo check (tipo in (0,1,2)),
   constraint pk_sensorentity primary key (id)
 );
 create sequence Sensor;
@@ -75,8 +76,8 @@ create sequence Usuario;
 alter table campoentity add constraint fk_campoentity_region_id foreign key (region_id) references regionentity (id) on delete restrict on update restrict;
 create index ix_campoentity_region_id on campoentity (region_id);
 
-alter table informeentity add constraint fk_informeentity_sen_id foreign key (sen_id) references sensorentity (id) on delete restrict on update restrict;
-create index ix_informeentity_sen_id on informeentity (sen_id);
+alter table informeentity add constraint fk_informeentity_sensor_id foreign key (sensor_id) references sensorentity (id) on delete restrict on update restrict;
+create index ix_informeentity_sensor_id on informeentity (sensor_id);
 
 alter table pozoentity add constraint fk_pozoentity_campo_id foreign key (campo_id) references campoentity (id) on delete restrict on update restrict;
 create index ix_pozoentity_campo_id on pozoentity (campo_id);
@@ -98,8 +99,8 @@ alter table usuarioentity add constraint fk_usuarioentity_campo_id foreign key (
 alter table if exists campoentity drop constraint if exists fk_campoentity_region_id;
 drop index if exists ix_campoentity_region_id;
 
-alter table if exists informeentity drop constraint if exists fk_informeentity_sen_id;
-drop index if exists ix_informeentity_sen_id;
+alter table if exists informeentity drop constraint if exists fk_informeentity_sensor_id;
+drop index if exists ix_informeentity_sensor_id;
 
 alter table if exists pozoentity drop constraint if exists fk_pozoentity_campo_id;
 drop index if exists ix_pozoentity_campo_id;
