@@ -88,7 +88,7 @@ public class UsuarioController extends Controller {
     public CompletionStage<Result> asignarCampo( Long idCampo, Long idUser){
         UsuarioEntity antiguo = UsuarioEntity.FINDER.byId(idUser);
         CampoEntity campo = CampoEntity.FINDER.byId(idCampo);
-
+    System.out.println("Entro a asignar");
         return CompletableFuture.supplyAsync(
                 ()->{
                     antiguo.setCampo(campo);

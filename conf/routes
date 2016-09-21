@@ -73,7 +73,8 @@ DELETE  /informe/:id                controllers.InformeController.deleteInforme(
 
 #Controlador del Reporte
 GET     /reportes                   controllers.ReporteController.getReportes
-GET     /reporte/:id                controllers.ReporteController.getReporte(id : Long)
+#GET     /reporte/:id                controllers.ReporteController.getReporte(id : Long)
+GET     /user/:id/reportes/:fechas  controllers.ReporteController.getReporte(id : Long, fechas : String)
 POST    /reporte                    controllers.ReporteController.createReporte
 PUT     /reporte/:id                controllers.ReporteController.updateReporte(id : Long)
 DELETE  /reporte/:id                controllers.ReporteController.deleteReporte(id : Long)

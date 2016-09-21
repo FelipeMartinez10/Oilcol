@@ -15,7 +15,7 @@ create table informeentity (
   id                            bigint not null,
   tipo                          varchar(255),
   dato                          float,
-  fecha                         timestamp,
+  fecha                         bigint,
   emergencia                    boolean,
   sensor_id                     bigint,
   constraint pk_informeentity primary key (id)

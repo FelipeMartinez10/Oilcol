@@ -57,7 +57,7 @@ public class InformeController extends Controller {
                 ()->{
                     SensorEntity sensor = SensorEntity.FINDER.byId(idSensor);
                     sensor.addInforme(informe);
-                    informe.setCampo(sensor);
+                    informe.setSensor(sensor);
                     sensor.update();
                     informe.save();
                     return informe;
@@ -94,7 +94,7 @@ public class InformeController extends Controller {
                 ()->{
                     antiguo.setId(informe.getId());
                     antiguo.setFecha(informe.getFecha());
-                    antiguo.setCampo(informe.getCampo());
+                    antiguo.setSensor(informe.getSensor());
                     antiguo.setTipo(informe.getTipo());
                     antiguo.setEmergencia(informe.getEmergencia());
                     antiguo.update();

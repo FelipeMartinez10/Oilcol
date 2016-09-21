@@ -1,5 +1,0 @@
-New log file opened at Wed Aug 31 10:59:31 COT 2016 by 79072@ISIS2503-37
-Sending msg to client play-fork-run-1b195cc0-9797-4557-bc02-6c2c499ba739: DetachedLogEvent(LogMessage(debug,sbt server socket logs are in: C:\Users\jp.gonzalez14\Documents\GitHub\Oilcol\.sbtserver\connections\master.log))
-Sending msg to client play-fork-run-1b195cc0-9797-4557-bc02-6c2c499ba739: DetachedLogEvent(LogMessage(debug,sbt general server logs are in: C:\Users\jp.gonzalez14\Documents\GitHub\Oilcol\.sbtserver\master.log))
-Sending msg to client play-fork-run-1b195cc0-9797-4557-bc02-6c2c499ba739: DetachedLogEvent(LogMessage(debug,sbt client logs are in: C:\Users\jp.gonzalez14\Documents\GitHub\Oilcol\.sbtserver\connections\play-fork-run-1b195cc0-9797-4557-bc02-6c2c499ba739.log))
-Reading next message from client.

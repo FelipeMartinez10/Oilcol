@@ -69,7 +69,7 @@ public class CampoEntity extends Model
     public void setRegion(RegionEntity region) {
         this.region = region;
     }
-    public List<PozoEntity> getSensores()
+    public List<PozoEntity> getPozos()
     {
         return pozos;
     }

@@ -20,7 +20,7 @@ public class InformeEntity extends Model {
     private Long id;
     private String tipo;
     private double dato;
-    private Date fecha;
+    private Long fecha;
     private boolean emergencia;
 
     @ManyToOne
@@ -43,7 +43,7 @@ public class InformeEntity extends Model {
         this.id = id;
     }
 
-    public InformeEntity(boolean emergencia, double dato, Date fecha, Long id, String tipo, SensorEntity sen)
+    public InformeEntity(boolean emergencia, double dato, Long fecha, Long id, String tipo, SensorEntity sen)
     {
         this.emergencia = emergencia;
         this.dato = dato;
@@ -68,11 +68,11 @@ public class InformeEntity extends Model {
         this.dato = dato;
     }
 
-    public Date getFecha() {
+    public Long getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Long fecha) {
         this.fecha = fecha;
     }
 
@@ -92,11 +92,11 @@ public class InformeEntity extends Model {
         this.emergencia = emergencia;
     }
 
-    public SensorEntity getCampo() {
+    public SensorEntity getSensor() {
         return sensor;
     }
 
-    public void setCampo(SensorEntity sen) {
+    public void setSensor(SensorEntity sen) {
         this.sensor = sen;
     }
     @Override
