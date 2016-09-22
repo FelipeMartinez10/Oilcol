@@ -15,6 +15,7 @@ import static play.libs.Json.toJson;
  * Created by jd.torres11 on 27/08/2016.
  */
 public class InformeController extends Controller {
+    private static SensorEntity ultimo;
     public CompletionStage<Result> getInformes() {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
 
@@ -50,17 +51,23 @@ public class InformeController extends Controller {
     }
 
     public CompletionStage<Result> createInformeDeSensor(Long idSensor){
-        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        //MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
         JsonNode n = request().body().asJson();
         InformeEntity informe = Json.fromJson( n , InformeEntity.class ) ;
         return CompletableFuture.supplyAsync(
                 ()->{
-                    SensorEntity sensor = SensorEntity.FINDER.byId(idSensor);
-                    sensor.addInforme(informe);
-                    informe.setSensor(sensor);
-                    sensor.update();
-                    informe.save();
-                    return informe;
+                    //SensorEntity sensor = null;
+                    if(ultimo==null||ultimo.getId()!=idSensor)
+                    {
+
+                        ultimo = SensorEntity.FINDER.byId(idSensor);
+                        ultimo.addInforme(informe);
+                    }
+                        informe.setSensor(ultimo);
+                        ultimo.update();
+                        informe.save();
+                        return informe;
+
                 }
         ).thenApply(
                 informes -> {
