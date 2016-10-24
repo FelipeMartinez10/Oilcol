@@ -59,6 +59,19 @@ function initMap() {
       })(marker, i));
     }
 }
-}					        
+}		
 
+$(document).ready(function()
+{
+    $(".cambiarAMapa").click(function()
+    {
+        $("#tablaPozos").hide();
+        $("#mapaCampo").show();
+    });
+    $(".cambiarATabla").click(function()
+    {
+       	$("#mapaCampo").hide();
+        $("#tablaPozos").show();
+    });
+});
 

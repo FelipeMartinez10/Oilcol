@@ -425,7 +425,7 @@
 
 				</div>
 <!-- LM Mapa de los pozos de un campo -->
-				<div class="box span4">
+				<div class="box span8">
 					
 					<div class="box-header">
 						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos del campo</h2>
@@ -434,72 +434,55 @@
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
+							
 					</div>
 					<div class="box-content">
+
 						<div class="center" style="height:400px;" >
 							<div id="mapaCampo"> </div>
-						</div>
-						
-					</div>
-				
-				</div><!--/span-->
-
-<!--LM Tabla pozos  -->
-				<div class="box span4">
-					
-					<div class="box-header">
-						<h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<div class="center" style="height:400px;" >
-
+							<div id="tablaPozos" hidden>
 						<table class="table table-hover table-bordered " >
 						  <thead>
 							  <tr>
-							  	<th >Id pozo</th>
+							  	<th >Pozo</th>
 							  	<th>Estado</th>
-								  <th>Temp</th>
-								  <th>Caudal</th>
-								  <th>Consumo</th>
+								  <th>Temp (C)</th>
+								  <th>Caudal (Barriles)</th>
+								  <th>Consumo (KW)</th>
 							  </tr>
 						  </thead>   
 						  <tbody>
 							<tr>
-								<td><strong>01</strong></td>
+								<td><strong>pozo 01</strong></td>
 								<td class="center"><i class="halflings-icon warning-sign" style="color:red;"></i></td>
 								<td class="center">23 </td>
 								<td class="center">65 </td>
 								<td class="center">87</td>
 							</tr>
 							<tr>
-								<td><strong>02</strong></td>
-								<td>Bien</td>
+								<td><strong>pozo 02</strong></td>
+								<td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
 								<td class="center">25 </td>
 								<td class="center">62 </td>
 								<td class="center">84</td>
 							</tr>
 							<tr>
-								<td><strong>03</strong></td>
-								<td>Bien</td>
+								<td><strong>pozo 03</strong></td>
+								<td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
 								<td class="center">23 </td>
 								<td class="center">62 </td>
 								<td class="center">87</td>
 							</tr>
 							<tr>
-								<td><strong>04</strong></td>
-								<td>Bien</td>
+								<td><strong>pozo 04</strong></td>
+								<td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
 								<td class="center">23 </td>
 								<td class="center">85 </td>
 								<td class="center">87</td>
 							</tr>
 							<tr>
-								<td><strong>05</strong></td>
-								<td>Bien</td>
+								<td><strong>pozo 05</strong></td>
+								<td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
 								<td class="center">33 </td>
 								<td class="center">64 </td>
 								<td class="center">87</td>
@@ -508,13 +491,16 @@
 							
 							
 						  </tbody>
-					  </table>            
-					</div>
+					  </table>  
+					  </div>  
+					  <button class="cambiarATabla btn btn-info">Mostrar Tabla</button>
+							<button class="cambiarAMapa btn btn-info">Mostrar Mapa</button>        
 						</div>
 						
-					
+					</div>
 				
 				</div><!--/span-->
+
 
 <!-- LM termina primera fila -->
 			</div>
