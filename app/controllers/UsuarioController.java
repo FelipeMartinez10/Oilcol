@@ -33,7 +33,10 @@ public class UsuarioController extends Controller {
                 supplyAsync(() -> { return UsuarioEntity.FINDER.byId(idP); } ,jdbcDispatcher)
                 .thenApply(usuarioEntities -> {return ok(toJson(usuarioEntities));}
                 );
+
     }
+
+
     public CompletionStage<Result> createUsuario(){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
         JsonNode n = request().body().asJson();

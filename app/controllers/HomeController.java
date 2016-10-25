@@ -1,14 +1,21 @@
 package controllers;
 
+import com.google.inject.Inject;
+import models.InformeEntity;
+import models.PozoEntity;
+import models.UsuarioEntity;
 import play.mvc.*;
 
 import views.html.*;
+
+import java.util.List;
 
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
  */
 public class HomeController extends Controller {
+
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -17,7 +24,28 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+
+        //List<UsuarioEntity> users = UsuarioEntity.FINDER.all();
+    UsuarioEntity user = UsuarioEntity.FINDER.byId(1L);
+        //PozoEntity pozo = PozoEntity.FINDER.byId(1L);
+        //return ok(views.html.pozo.render(pozo));
+        return ok(index.render(user));
+    }
+
+    public Result pozo() {
+
+        List<InformeEntity> informes = InformeEntity.FINDER.all();
+        String datos = "";
+        for (int i =0;i<informes.size();i++)
+        {
+            if(i<informes.size()-1)
+            datos+=informes.get(i).getDato()+",";
+            else
+                datos+=informes.get(i).getDato();
+        }
+        PozoEntity pozo = PozoEntity.FINDER.byId(1L);
+        return ok(views.html.pozo.render(pozo, datos));
+        //return ok(index.render(user));
     }
 
 }

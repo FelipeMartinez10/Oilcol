@@ -2,7 +2,7 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(message: String)
+@(usuario: UsuarioEntity)
 
 @*
  * Call the `main` template with two arguments. The first
@@ -14,7 +14,12 @@
     @*
      * Get an `Html` object by calling the built-in Play welcome
      * template and passing a `String` message.
+    * @play20.welcome(message, style = "Java")
      *@
-    @play20.welcome(message, style = "Java")
+
+    <p>@usuario.getName</p>
+
+
+
 
 }

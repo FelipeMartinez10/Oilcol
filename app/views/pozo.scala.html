@@ -1,0 +1,203 @@
+@(pozo: PozoEntity)(informes: String)
+
+@main("Pozo "+ pozo.getId) {
+
+    @*
+    * Get an `Html` object by calling the built-in Play welcome
+    * template and passing a `String` message.
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="index.html">Home</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Campo 22</a><i class="icon-angle-right"></i></li>
+        <li><a href="#">Pozo @pozo.getId</a></li>
+    </ul>
+    <!--LM Aca comienza el contenido -->
+
+    <div class="row-fluid sortable">
+
+        <div class="box span4" style="height:650px;">
+            <div class="box-header">
+                <h2><i class="halflings-icon tint white font"></i><span class="break"></span>Información pozo @pozo.getId</h2>
+            </div>
+            <div class="box-content">
+                    <!-- <div class="page-header">
+							  <h1>Información <small>Headings, paragraphs, lists, and other inline type elements</small></h1>
+						  </div> -->
+                <div class="infoPozo" >
+                    <p><strong>Emergencia actual</strong>: @pozo.getEstado</p>
+                    <p><strong>Estado actual</strong>: En producción</p>
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                    <p></p>
+                    <p><strong>Número Emergencias</strong>: 2</p>
+                    <p><strong>Temperatura promedio</strong>: 23.5  C</p>
+                    <p><strong>Caudal promedio</strong>: 87.5  Barriles</p>
+                    <p><strong>Consumo de energía promedio</strong>: 87.5  KW</p>
+                </div>
+
+                <div style="height:30px;" ></div>
+                <p><strong>Ubicación</strong></p>
+
+                <div id="mapaPozo"> </div>
+
+
+            </div>
+
+        </div><!--/span-->
+
+        <!--<div class="box span">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white list"></i><span class="break"></span>Ordered List</h2>
+					</div>
+					<div class="box-content">
+						<ol>
+						  <li>Lorem ipsum dolor sit amet</li>
+						  <li>Consectetur adipiscing elit</li>
+						  <li>Integer molestie lorem at massa</li>
+						  <li>Facilisis in pretium nisl aliquet</li>
+						  <li>Nulla volutpat aliquam velit</li>
+						  <li>Faucibus porta lacus fringilla vel</li>
+						  <li>Aenean sit amet erat nunc</li>
+						  <li>Eget porttitor lorem</li>
+						</ol>
+					</div>
+				</div>--><!--/span-->
+
+        <!-- LM Grafica Temperatura -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <div id="infoTemperatura" hidden>@informes</div>
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="temperatura"  class="center" style="height:250px;" >
+                </div>
+
+            </div>
+
+        </div><!--/span-->
+
+        <!-- LM Grafica Caudal -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="caudal"  class="center" style="height:250px;" >
+                </div>
+
+            </div>
+
+        </div><!--/span-->
+
+
+        <!-- LM Grafica Caudal -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="consumo"  class="center" style="height:250px;" >
+                </div>
+                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+            </div>
+
+        </div><!--/span-->
+        <!-- Tabla sensores -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Sensores</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="center" style="height:250px;" >
+
+                    <table class="table table-hover table-bordered " >
+                        <thead>
+                            <tr>
+                                <th >Id Sensor</th>
+                                <th>Estado</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>01</strong></td>
+                                <td class="center"><i class="halflings-icon warning-sign" style="color:red;"></i></td>
+                                <td class="center">Temperatura </td>
+                                <td class="center">10000 </td>
+                            </tr>
+                            <tr>
+                                <td><strong>02</strong></td>
+                                <td>Bien</td>
+                                <td class="center">Temperatura </td>
+                                <td class="center">16 </td>
+                            </tr>
+                            <tr>
+                                <td><strong>03</strong></td>
+                                <td>Bien</td>
+                                <td class="center">Temperatura </td>
+                                <td class="center">40 </td>
+                            </tr>
+                            <tr>
+                                <td><strong>04</strong></td>
+                                <td>Bien</td>
+                                <td class="center">Temperatura </td>
+                                <td class="center">35 </td>
+                            </tr>
+                            <tr>
+                                <td><strong>05</strong></td>
+                                <td>Bien</td>
+                                <td class="center">Temperatura </td>
+                                <td class="center">35 </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </div><!--/span-->
+
+    </div><!--/row-->
+
+
+
+
+
+}
+
+
