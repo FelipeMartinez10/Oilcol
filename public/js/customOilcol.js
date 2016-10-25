@@ -5,7 +5,9 @@ function initMap() {
 	// Cordenadas de mi casa 4.604534, -74.069729
 	if(document.getElementById('mapaPozo')!=null)
 	{
-	var uluru = {lat: 4.604534, lng: -74.069729};
+	    var pos= document.getElementById('infoMapaPozo').innerHTML.split(',')
+	//var uluru = {lat: 4.604534, lng: -74.069729};
+        var uluru = {lat: parseFloat(pos[0]), lng: parseFloat(pos[1])};
 	
 	var map = new google.maps.Map(document.getElementById('mapaPozo'), {
 	zoom: 10,

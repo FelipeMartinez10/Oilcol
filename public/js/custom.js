@@ -1446,7 +1446,7 @@ function charts() {
 						   tickColor: "#dddddd",
 						   borderWidth: 0 
 						 },
-				   yaxis: { min: 0, max: 40 },
+				   yaxis: { min: 10, max: 60 },
 				   colors: ["#FA5833", "#2FABE9"]
 				 });
 
@@ -1511,12 +1511,14 @@ function charts() {
 	if($("#caudal").length)
 	{
 		var caudal = [];
+		var cadena =document.getElementById("infoCaudal").innerHTML.split(",");
 		// LM Modela los días para los que se mostrara
-		var x=14
-		for (var i = 0; i < x; i += 0.5) {
-			//LM Crea caudal random entre 85 y 115
-			var temp =Math.floor((Math.random() * 30) + 85);
-			caudal.push([i, temp]);
+		var x=30
+		for (var i = 0; i < x; i += 1) {
+			//LM Crea temperaturas random entre 20 y 30
+			//var temp =Math.floor((Math.random() * 10) + 20);
+			var temp = cadena[i];
+			caudal.push([i/2, temp]);
 		}
 
 		var plot = $.plot($("#caudal"),
@@ -1591,12 +1593,14 @@ function charts() {
 	if($("#consumo").length)
 	{
 		var consumo = [];
+		var cadena =document.getElementById("infoConsumo").innerHTML.split(",");
 		// LM Modela los días para los que se mostrara
-		var x=14
-		for (var i = 0; i < x; i += 0.5) {
-			//LM Crea consumo random entre 1000 y 2000
-			var co =Math.floor((Math.random() * 750) + 1100);
-			consumo.push([i, co]);
+		var x=30
+		for (var i = 0; i < x; i += 1) {
+			//LM Crea temperaturas random entre 20 y 30
+			//var temp =Math.floor((Math.random() * 10) + 20);
+			var temp = cadena[i];
+			consumo.push([i/2, temp]);
 		}
 
 		var plot = $.plot($("#consumo"),
@@ -1670,7 +1674,7 @@ function charts() {
 		var d1 = [];
 		for (var i = 0; i < Math.PI * 2; i += 0.25)
 			d1.push([i, Math.sin(i)]);
-		
+
 		var d2 = [];
 		for (var i = 0; i < Math.PI * 2; i += 0.25)
 			d2.push([i, Math.cos(i)]);

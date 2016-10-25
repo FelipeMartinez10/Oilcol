@@ -32,20 +32,6 @@ public class HomeController extends Controller {
         return ok(index.render(user));
     }
 
-    public Result pozo() {
 
-        List<InformeEntity> informes = InformeEntity.FINDER.all();
-        String datos = "";
-        for (int i =0;i<informes.size();i++)
-        {
-            if(i<informes.size()-1)
-            datos+=informes.get(i).getDato()+",";
-            else
-                datos+=informes.get(i).getDato();
-        }
-        PozoEntity pozo = PozoEntity.FINDER.byId(1L);
-        return ok(views.html.pozo.render(pozo, datos));
-        //return ok(index.render(user));
-    }
 
 }

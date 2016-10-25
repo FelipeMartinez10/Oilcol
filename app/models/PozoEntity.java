@@ -28,6 +28,8 @@ public class PozoEntity extends Model {
     @OneToMany(mappedBy = "pozo")
     private List<SensorEntity > sensores;
 
+    private double longitud;
+    private double latitud;
     public PozoEntity()
     {
         this.id=null;
@@ -38,8 +40,10 @@ public class PozoEntity extends Model {
         this.id = id;
     }
 
-    public PozoEntity(Long id, String estado, CampoEntity campo)
+    public PozoEntity(Long id, String estado, CampoEntity campo, double longitud, double latitud)
     {
+        setLatitud(latitud);
+        setLongitud(longitud);
         this.campo = campo;
         this.id = id;
         this.setEstado(estado);
@@ -91,5 +95,25 @@ public class PozoEntity extends Model {
                 "id=" + id +
                 ", estado='" + estado.toString() + '\'' +
                 '}';
+    }
+
+    public double getLongitud()
+    {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud)
+    {
+        this.longitud = longitud;
+    }
+
+    public double getLatitud()
+    {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud)
+    {
+        this.latitud = latitud;
     }
 }

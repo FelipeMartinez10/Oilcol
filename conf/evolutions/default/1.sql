@@ -32,6 +32,8 @@ create table pozoentity (
   id                            bigint not null,
   estado                        integer,
   campo_id                      bigint,
+  longitud                      float,
+  latitud                       float,
   constraint ck_pozoentity_estado check (estado in (0,1,2,3)),
   constraint pk_pozoentity primary key (id)
 );

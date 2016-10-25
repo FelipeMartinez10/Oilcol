@@ -1,4 +1,4 @@
-@(pozo: PozoEntity)(informes: String)
+@(pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
 
 @main("Pozo "+ pozo.getId) {
 
@@ -30,8 +30,8 @@
 							  <h1>Información <small>Headings, paragraphs, lists, and other inline type elements</small></h1>
 						  </div> -->
                 <div class="infoPozo" >
-                    <p><strong>Emergencia actual</strong>: @pozo.getEstado</p>
-                    <p><strong>Estado actual</strong>: En producción</p>
+                    <p><strong>Emergencia actual</strong>: False</p>
+                    <p><strong>Estado actual</strong>: @pozo.getEstado</p>
                     <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
                     <p></p>
                     <p><strong>Número Emergencias</strong>: 2</p>
@@ -43,6 +43,7 @@
                 <div style="height:30px;" ></div>
                 <p><strong>Ubicación</strong></p>
 
+                <div id="infoMapaPozo" hidden>@pozo.getLatitud,@pozo.getLongitud</div>
                 <div id="mapaPozo"> </div>
 
 
@@ -72,7 +73,7 @@
         <div class="box span4">
 
             <div class="box-header">
-                <div id="infoTemperatura" hidden>@informes</div>
+                <div id="infoTemperatura" hidden>@datosTemp</div>
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura</h2>
                 <div class="box-icon">
                     <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
@@ -92,6 +93,7 @@
         <div class="box span4">
 
             <div class="box-header">
+                <div id="infoCaudal" hidden>@datosCaudal</div>
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal</h2>
                 <div class="box-icon">
                     <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
@@ -112,6 +114,7 @@
         <div class="box span4">
 
             <div class="box-header">
+                <div id="infoConsumo" hidden>@datosConsumo</div>
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo</h2>
                 <div class="box-icon">
                     <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>

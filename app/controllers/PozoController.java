@@ -3,11 +3,15 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
-import models.CampoEntity;
-import models.PozoEntity;
+import models.*;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import static play.libs.Json.toJson;
@@ -104,5 +108,49 @@ public class PozoController extends Controller {
                     return ok(Json.toJson(pozoEntities));
                 }
         );
+    }
+
+    public Result pozoHtml(Long idPozo)
+    {
+        PozoEntity pozo = PozoEntity.FINDER.byId(idPozo);
+
+        List<SensorEntity> sensores = pozo.getSensores();
+        List<Long> idsSensores = new ArrayList<Long>();
+        for (SensorEntity sensor: sensores)
+        {
+            idsSensores.add(sensor.getId());
+        }
+          List<InformeEntity> informes = InformeEntity.FINDER.where().in("sensor_id", idsSensores).findList();
+
+            String datosTemp = "";
+            String datosCaudal = "";
+            String datosConsumo = "";
+
+
+            for (int i = 0; i < informes.size(); i++)
+            {
+                if (informes.get(i).getTipo().equals("0"))
+                {
+                    if (i < informes.size() - 1)
+                        datosTemp += informes.get(i).getDato() + ",";
+                    else
+                        datosTemp += informes.get(i).getDato();
+                } else if (informes.get(i).getTipo().equals("2"))
+                {
+                    if (i < informes.size() - 1)
+                        datosCaudal += informes.get(i).getDato() + ",";
+                    else
+                        datosCaudal += informes.get(i).getDato();
+                } else if (informes.get(i).getTipo().equals("1"))
+                {
+                    if (i < informes.size() - 1)
+                        datosConsumo += informes.get(i).getDato() + ",";
+                    else
+                        datosConsumo += informes.get(i).getDato();
+                }
+            }
+
+            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo));
+
     }
 }
