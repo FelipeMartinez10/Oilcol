@@ -1,0 +1,134 @@
+@(sensor: SensorEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
+@*
+* (sensor: SensorEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
+* (pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
+*@
+@main("Sensor "+sensor.getId) {
+
+    @*
+    * Get an `Html` object by calling the built-in Play welcome
+    * template and passing a `String` message.
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="index.html">Home</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Pozo @sensor.getPozo.getId</a><i class="icon-angle-right"></i></li>
+        <li><a href="#">Sensor @sensor.getId </a></li>
+    </ul>
+
+            <!--LM Aca comienza el contenido -->
+            <!-- LM comienza primera fila -->
+        <div class="row-fluid sortable">
+
+            <div class="box span4" style="height:460px;">
+                <div class="box-header">
+                    <h2><i class="halflings-icon tint white font"></i><span class="break"></span>Información sensor 1</h2>
+                </div>
+                <div class="box-content">
+
+                    <div class="infoPozo" >
+                        <p><strong>Tipo</strong>: @sensor.getTipo</p>
+                        <p><strong>Emergencia</strong>: </p>
+                            <!-- <ul >
+								<li>5 en producción</li>
+								<li>2 clausurados</li>
+								<li>1 abiertos</li>
+								<li>2 parados</li>
+							</ul> -->
+                        <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                        <p></p>
+                        <p><strong>Número Emergencias</strong>: 6</p>
+                        <p><strong>Temperatura promedio</strong>: 26.5  C</p>
+                        <p><strong>Consumo de energía promedio</strong>: 102.5  KW</p>
+                        <p><strong>Consumo de energía total</strong>: 1025  KW</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+                <!-- LM Grafica Temperatura -->
+            <div class="box span4">
+
+                <div class="box-header">
+                    <div id="infoTemperatura" hidden>@datosTemp</div>
+                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div id="temperatura"  class="center" style="height:250px;" >
+                    </div>
+
+                </div>
+
+            </div><!--/span-->
+
+            <!-- LM Grafica Caudal -->
+            <div class="box span4">
+
+                <div class="box-header">
+                    <div id="infoCaudal" hidden>@datosCaudal</div>
+                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div id="caudal"  class="center" style="height:250px;" >
+                    </div>
+
+                </div>
+
+            </div><!--/span-->
+
+
+            <!-- LM Grafica Caudal -->
+            <div class="box span4">
+
+                <div class="box-header">
+                    <div id="infoConsumo" hidden>@datosConsumo</div>
+                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div id="consumo"  class="center" style="height:250px;" >
+                    </div>
+                        <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+                </div>
+
+            </div><!--/span-->
+            <!--div class="widget yellow span4 noMargin" onTablet="span12" onDesktop="span4">
+                <h2><span class="glyphicons fire"><i></i></span> Datos Temperatura Entrantes</h2>
+                <hr>
+                <div class="content">
+                    <div id="serverLoad3" style="height:350px;"></div>
+                </div>
+            </div>
+
+                <!-- LM termina primera fila -->
+        </div>
+    <!--/row-->
+
+
+
+
+
+
+}
+
+
