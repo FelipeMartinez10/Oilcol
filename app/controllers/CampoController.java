@@ -130,8 +130,10 @@ public class CampoController extends Controller{
         int clausurados=0;
         int abierto=0;
         int parado=0;
+        String pozoos="";
 
         List<PozoEntity> pozos = PozoEntity.FINDER.where().in("campo_id", idCampo).findList();
+        pozoos += pozos.size();
         for (PozoEntity pozo: pozos)
         {
             if(pozo.getEstado().equals(EstadoPozo.Produccion))produccion++;
@@ -210,7 +212,7 @@ public class CampoController extends Controller{
         }
 
 
-        return ok(views.html.campo.render(campo, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", total1, total2, produccion, clausurados, abierto, parado));
+        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", tempProm+"", caudalProm+"", consumoProm+"", total1+"", total2+"", produccion+"", clausurados+"", abierto+"", parado+""));
 
     }
 

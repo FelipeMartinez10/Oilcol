@@ -1,4 +1,4 @@
-@(campo: CampoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(pozos : List[PozoEntity])(numEmergencias: Integer)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: Double)(total2: Double)(produccion: Integer)(clausurado: Integer)(abierto: Integer)(parado: Integer)
+@(campo: CampoEntity)(numPozo: String)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(pozos : List[PozoEntity])(numEmergencias: String)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: String)(total2: String)(produccion: String)(clausurado: String)(abierto: String)(parado: String)
 
 @main("Campo "+ campo.getId){
 
@@ -9,6 +9,7 @@
             <a href="index.html">Home</a>
             <i class="icon-angle-right"></i>
         </li>
+        <li><a href="../regiones">Region @campo.getRegion.getId</a><i class="icon-angle-right"></i></li>
         <li><a href="#">Campo @campo.getId</a></li>
     </ul>
 
@@ -26,7 +27,7 @@
 							  <h1>Información <small>Headings, paragraphs, lists, and other inline type elements</small></h1>
 						  </div> -->
                 <div class="infoCampo" >
-                    <p><strong>Total pozos</strong>: </p>
+                    <p><strong>Total pozos</strong>: @numPozo</p>
                     <p><strong>Numero Emergencias</strong>: @numEmergencias</p>
                     <p><strong>Estado de los pozos</strong>: @produccion en producción, @clausurado clausurados, @abierto abiertos y @parado parados.</p>
                         <!-- <ul >
@@ -80,7 +81,7 @@
                             <tbody>
                             @for(pozo <- pozos) {
                                 <tr>
-                                    <td><strong>@pozo.getId</strong></td>
+                                    <td><strong ><a href="../pozo/@pozo.getId">@pozo.getId</a></strong></td>
 
                                     <td class="center">@pozo.getEstado </td>
                                 </tr>
