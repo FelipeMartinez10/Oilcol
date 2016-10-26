@@ -28,6 +28,7 @@ GET     /oilcol/pozo/:id            controllers.PozoController.pozoHtml(id : Lon
 GET     /oilcol/campo/:id           controllers.CampoController.campoHtml(id : Long)
 GET     /oilcol/regiones            controllers.RegionController.regionesHtml
 GET     /login                      controllers.UsuarioController.login()
+POST    /logins                      controllers.UsuarioController.authenticate()
 
 #Controlador del Usuario
 GET     /users                      controllers.UsuarioController.getUsuarios
