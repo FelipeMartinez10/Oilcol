@@ -115,8 +115,8 @@ public class UsuarioController extends Controller {
         public String password;
 
         public String validate() {
-            if (email == null) {
-                return "Invalid user or password";
+            if (!email.equals("a@a.com") && !email.equals("perra") ) {
+                    return "Invalid user or password";
             }
             return null;
         }
@@ -125,6 +125,14 @@ public class UsuarioController extends Controller {
     public Result login()
     {
         return ok(views.html.login.render(form(Login.class)));
+    }
+    public Result logout()
+    {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(
+                routes.UsuarioController.login()
+        );
     }
 
     public Result authenticate() {

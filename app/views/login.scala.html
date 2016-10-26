@@ -28,6 +28,11 @@
                         @form.globalError.message
                         </p>
                     }
+                    @if(flash.contains("success")) {
+                        <p class="success">
+                        @flash.get("success")
+                        </p>
+                    }
                 }
                 </div>
             </div>

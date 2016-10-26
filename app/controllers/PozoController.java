@@ -3,10 +3,14 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
-import models.*;
+import models.CampoEntity;
+import models.InformeEntity;
+import models.PozoEntity;
+import models.SensorEntity;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+
 import static play.libs.Json.toJson;
 
 /**
@@ -109,7 +114,7 @@ public class PozoController extends Controller {
                 }
         );
     }
-
+    @Security.Authenticated(Secured.class)
     public Result pozoHtml(Long idPozo)
     {
         PozoEntity pozo = PozoEntity.FINDER.byId(idPozo);

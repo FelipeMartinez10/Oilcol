@@ -1,14 +1,11 @@
 package controllers;
 
-import com.google.inject.Inject;
-import models.InformeEntity;
-import models.PozoEntity;
 import models.UsuarioEntity;
-import play.mvc.*;
-
+import play.mvc.Controller;
+import play.mvc.Result;
 import views.html.*;
 
-import java.util.List;
+
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -23,6 +20,7 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
+
     public Result index() {
 
         //List<UsuarioEntity> users = UsuarioEntity.FINDER.all();
