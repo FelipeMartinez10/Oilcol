@@ -114,7 +114,7 @@ public class SensorController extends Controller {
 
   {
       SensorEntity sensor = SensorEntity.FINDER.byId(idSensor);
-//
+
 //       List<InformeEntity> informes = sensor.getInformes();
 //        List<Long> idsSensores = new ArrayList<Long>();
 //        for (SensorEntity sensor: sensores)
