@@ -28,13 +28,11 @@ function initMap() {
 	}
 	else if(document.getElementById('mapaCampo')!=null)
     {
-	var locations = [
-      ['Pozo1', 4.604534, -74.069729, 4],
-      ['Pozo2', 4.414534, -74.169729, 5],
-      ['Pozo3', 4.454534, -74.269729, 3],
-      ['Pozo4', 4.594534, -73.969729, 2],
-      ['Pozo5', 4.784534, -73.869729, 1]
-    ];
+        var pos= document.getElementById('infoMapaCampo').innerHTML.split('+');
+        var locations =[];
+        for (var i = 0; i < pos.length; i += 1) {
+            locations[i]=['Pozo numero'+ i, pos[i].split(',')[0],pos[i].split(',')[1],i];
+        }
     
     var map = new google.maps.Map(document.getElementById('mapaCampo'), {
       zoom: 10,
