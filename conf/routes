@@ -26,6 +26,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /oilcol/pozo/:id            controllers.PozoController.pozoHtml(id : Long)
 
+GET     /oilcol/regiones            controllers.RegionController.regionesHtml
+
 #Controlador del Usuario
 GET     /users                      controllers.UsuarioController.getUsuarios
 GET     /user/:id                   controllers.UsuarioController.getUsuario(id : Long)

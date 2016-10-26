@@ -1,0 +1,185 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(regiones: List[RegionEntity])(numPozos: List[Integer])(consumo : List[Double])(tempPromedio: List[Double])(caudal: List[Double])
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Welcome to Play") {
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="index.html">Home</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Regiones</a></li>
+
+    </ul>
+
+        <!--LM Aca comienza el contenido -->
+
+    <div class="row-fluid sortable ">
+        <div class="span6">
+            <div class="box span12">
+                <div class="box-header">
+                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Region @regiones.get(0).getName</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="span6 infoPozo" >
+                        <p><strong>Número de campos</strong>: @regiones.get(0).getCampos.size()</p>
+                        <p><strong>Número de pozos</strong>: @numPozos.get(0)</p>
+                        <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                    </div>
+                    <div class="span6">
+                        <ul class="skill-bar">
+                            <li>
+                                <h5>Consumo energetico: @consumo.get(0) KW</h5>
+                                <div class="meter yellow"><span style="width: 60%"></span></div><!-- Edite width here -->
+                            </li>
+                            <li>
+                                <h5>Temperatura promedio: @tempPromedio.get(0) C</h5>
+                                <div class="meter blue"><span style="width: 80%"></span></div><!-- Edite width here -->
+                            </li>
+                            <li>
+                                <h5>Caudal total: @caudal.get(0) Barriles</h5>
+                                <div class="meter pink"><span style="width: 50%"></span></div><!-- Edite width here -->
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div><!--/span-->
+
+                <div class="row-fluid">
+                    <div class="box span12">
+                        <div class="box-header">
+                            <h2><i class="halflings-icon white list-alt"></i> <span class="break"></span>Region @regiones.get(1).getName</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div class="span6 infoPozo" >
+                                <p><strong>Número de campos</strong>: @regiones.get(1).getCampos.size()</p>
+                                <p><strong>Número de pozos</strong>: @numPozos.get(1)</p>
+                                <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+
+                            </div>
+                            <div class="span6">
+                                <ul class="skill-bar">
+                                    <li>
+                                        <h5>Consumo energetico: @consumo.get(1) KW</h5>
+                                        <div class="meter yellow"><span style="width: 90%"></span></div> <!-- Edite width here -->
+                                    </li>
+                                    <li>
+                                        <h5>Temperatura promedio: @tempPromedio.get(1) C</h5>
+                                        <div class="meter blue"><span style="width: 80%"></span></div> <!-- Edite width here -->
+                                    </li>
+                                    <li>
+                                        <h5>Caudal total: @caudal.get(1) Barriles</h5>
+                                        <div class="meter pink"><span style="width: 70%"></span></div> <!-- Edite width here -->
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!--/span-->
+                </div>
+
+
+
+        </div>
+        <div class="box span6">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+
+            </div>
+            <div class="box-content">
+
+                <div class="center"  >
+                    <div id="mapaRegiones"> </div>
+                    <div id="tablaPozos" hidden>
+                        <table class="table table-hover table-bordered " >
+                            <thead>
+                                <tr>
+                                    <th >Pozo</th>
+                                    <th>Estado</th>
+                                    <th>Temp (C)</th>
+                                    <th>Caudal (Barriles)</th>
+                                    <th>Consumo (KW)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>pozo 01</strong></td>
+                                    <td class="center"><i class="halflings-icon warning-sign" style="color:red;"></i></td>
+                                    <td class="center">23 </td>
+                                    <td class="center">65 </td>
+                                    <td class="center">87</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>pozo 02</strong></td>
+                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
+                                    <td class="center">25 </td>
+                                    <td class="center">62 </td>
+                                    <td class="center">84</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>pozo 03</strong></td>
+                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
+                                    <td class="center">23 </td>
+                                    <td class="center">62 </td>
+                                    <td class="center">87</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>pozo 04</strong></td>
+                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
+                                    <td class="center">23 </td>
+                                    <td class="center">85 </td>
+                                    <td class="center">87</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>pozo 05</strong></td>
+                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
+                                    <td class="center">33 </td>
+                                    <td class="center">64 </td>
+                                    <td class="center">87</td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="cambiarATablaRegiones btn btn-info">Mostrar Tabla</button>
+                    <button class="cambiarAMapaRegiones btn btn-info">Mostrar Mapa</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div><!--/row-->
+
+
+
+
+}

@@ -179,4 +179,6 @@ public class PozoController extends Controller {
             return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores));
 
     }
+
+
 }

@@ -80,4 +80,9 @@ public class SensorEntity extends Model {
                 ", tipo='" + tipo.toString() + '\'' +
                 '}';
     }
+
+    public List<InformeEntity> getInformes()
+    {
+        return  informes;
+    }
 }

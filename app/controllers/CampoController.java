@@ -3,11 +3,12 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
-import models.CampoEntity;
-import models.RegionEntity;
+import models.*;
 import play.libs.Json;
 import play.mvc.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -104,4 +105,5 @@ public class CampoController extends Controller{
                 }
         );
     }
+
 }
