@@ -1,0 +1,171 @@
+@(campo: CampoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(pozos : List[PozoEntity])(numEmergencias: Integer)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: Double)(total2: Double)(produccion: Integer)(clausurado: Integer)(abierto: Integer)(parado: Integer)
+
+@main("Campo "+ campo.getId){
+
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="index.html">Home</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Campo @campo.getId</a></li>
+    </ul>
+
+
+        <!--LM Aca comienza el contenido -->
+        <!-- LM comienza primera fila -->
+    <div class="row-fluid sortable">
+
+        <div class="box span4" style="height:460px;">
+            <div class="box-header">
+                <h2><i class="halflings-icon tint white font"></i><span class="break"></span>Información campo @campo.getId</h2>
+            </div>
+            <div class="box-content">
+                    <!-- <div class="page-header">
+							  <h1>Información <small>Headings, paragraphs, lists, and other inline type elements</small></h1>
+						  </div> -->
+                <div class="infoCampo" >
+                    <p><strong>Total pozos</strong>: </p>
+                    <p><strong>Numero Emergencias</strong>: @numEmergencias</p>
+                    <p><strong>Estado de los pozos</strong>: @produccion en producción, @clausurado clausurados, @abierto abiertos y @parado parados.</p>
+                        <!-- <ul >
+								<li>5 en producción</li>
+								<li>2 clausurados</li>
+								<li>1 abiertos</li>
+								<li>2 parados</li>
+							</ul> -->
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                    <p></p>
+                    <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
+                    <p><strong>Caudal promedio</strong>: @caudalP  Barriles</p>
+                    <p><strong>Consumo de energía promedio</strong>: @consumoP  KW</p>
+
+                    <p><strong>Caudal total</strong>: @total1  Barriles</p>
+                    <p><strong>Consumo de energía total</strong>: @total2  KW</p>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+            <!-- LM Mapa de los pozos de un campo -->
+        <div class="box span8">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos del campo</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+
+            </div>
+            <div class="box-content">
+
+                <div class="center" style="height:400px;" >
+                    <div id="mapaCampo"> </div>
+                    <div id="tablaPozos" hidden>
+                        <table class="table table-hover table-bordered " >
+                            <thead>
+                                <tr>
+                                    <th >Id Pozo</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @for(pozo <- pozos) {
+                                <tr>
+                                    <td><strong>@pozo.getId</strong></td>
+
+                                    <td class="center">@pozo.getEstado </td>
+                                </tr>
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="cambiarATabla btn btn-info">Mostrar Tabla</button>
+                    <button class="cambiarAMapa btn btn-info">Mostrar Mapa</button>
+                </div>
+
+            </div>
+
+        </div><!--/span-->
+
+        <!-- LM termina primera fila -->
+    </div>
+
+        <!-- LM comienza segunda fila -->
+    <div class="row-fluid sortable">
+
+            <!-- LM Grafica Temperatura -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura promedio</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="temperatura"  class="center" style="height:300px;" >
+                </div>
+                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+            </div>
+
+        </div><!--/span-->
+
+        <!-- LM Grafica Caudal -->
+
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal promedio</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="caudal"  class="center" style="height:300px;" >
+                </div>
+                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+            </div>
+
+        </div><!--/span-->
+
+
+        <!-- LM Grafica Caudal -->
+        <div class="box span4">
+
+            <div class="box-header">
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo promedio</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="consumo"  class="center" style="height:300px;" >
+                </div>
+                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+            </div>
+
+        </div><!--/span-->
+
+
+    </div><!-- LM termina segunda fila -->
+
+
+
+
+
+}
