@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   javaJdbc,
   cache,
   javaWs,
-  "org.postgresql" % "postgresql" % "9.4-1206-jdbc42"
+  "org.postgresql" % "postgresql" % "9.4-1206-jdbc42",
+  "org.apache.shiro" % "shiro-web" % "1.2.3"
 )
 
 
