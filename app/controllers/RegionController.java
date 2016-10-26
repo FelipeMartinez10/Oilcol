@@ -96,7 +96,8 @@ public class RegionController extends Controller {
         ArrayList<Double> temperaturaPromedio = new ArrayList();
         ArrayList<Double> caudal = new ArrayList();
 
-
+        List<PozoEntity> listaPozo = new ArrayList<>();
+        List<CampoEntity> listaCampos = new ArrayList<>();
 
         for(int i =0; i<regiones.size(); i++)
         {
@@ -109,10 +110,12 @@ public class RegionController extends Controller {
             int cantidadT=0;
             for(CampoEntity campo : campos)
             {
+                listaCampos.add(campo);
                 List<PozoEntity> pozos =campo.getPozos();
                cPozos+=pozos.size();
                 for(PozoEntity pozo: pozos)
                 {
+                    listaPozo.add(pozo);
                     List<SensorEntity> sensores = pozo.getSensores();
                     for(SensorEntity sensor: sensores)
                     {
@@ -146,6 +149,6 @@ public class RegionController extends Controller {
 
         }
 
-        return ok(views.html.regiones.render(regiones, numPozos, consumo, temperaturaPromedio,caudal));
+        return ok(views.html.regiones.render(regiones, numPozos, consumo, temperaturaPromedio,caudal, listaPozo, listaCampos));
     }
 }

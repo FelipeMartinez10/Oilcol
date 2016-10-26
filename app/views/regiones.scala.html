@@ -2,7 +2,7 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(regiones: List[RegionEntity])(numPozos: List[Integer])(consumo : List[Double])(tempPromedio: List[Double])(caudal: List[Double])
+@(regiones: List[RegionEntity])(numPozos: List[Integer])(consumo : List[Double])(tempPromedio: List[Double])(caudal: List[Double])(pozos : List[PozoEntity])(campos : List[CampoEntity])
 
 @*
  * Call the `main` template with two arguments. The first
@@ -217,7 +217,7 @@
         <div class="box span6">
 
             <div class="box-header">
-                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos</h2>
+                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Campos</h2>
                 <div class="box-icon">
                     <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -228,56 +228,27 @@
             <div class="box-content">
 
                 <div class="center"  >
-                    <div id="mapaRegiones"> </div>
+
+                    <div id="infoMapaCampo" hidden>@for(pozo <- pozos) {@pozo.getLatitud,@pozo.getLongitud+}</div>
+                    <div id="mapaCampo"> </div>
+
                     <div id="tablaPozos" hidden>
                         <table class="table table-hover table-bordered " >
                             <thead>
                                 <tr>
-                                    <th >Pozo</th>
-                                    <th>Estado</th>
-                                    <th>Temp (C)</th>
-                                    <th>Caudal (Barriles)</th>
-                                    <th>Consumo (KW)</th>
+                                    <th >Id Campo</th>
+                                    <th>Region</th>
+                                    <th>Nombre Campo</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @for(campo <- campos) {
                                 <tr>
-                                    <td><strong>pozo 01</strong></td>
-                                    <td class="center"><i class="halflings-icon warning-sign" style="color:red;"></i></td>
-                                    <td class="center">23 </td>
-                                    <td class="center">65 </td>
-                                    <td class="center">87</td>
+                                    <td><strong ><a href="../campo/@campo.getId">@campo.getId</a></strong></td>
+                                    <td class="center">@campo.getRegion.getName </td>
+                                    <td class="center">@campo.getName </td>
                                 </tr>
-                                <tr>
-                                    <td><strong>pozo 02</strong></td>
-                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
-                                    <td class="center">25 </td>
-                                    <td class="center">62 </td>
-                                    <td class="center">84</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>pozo 03</strong></td>
-                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
-                                    <td class="center">23 </td>
-                                    <td class="center">62 </td>
-                                    <td class="center">87</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>pozo 04</strong></td>
-                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
-                                    <td class="center">23 </td>
-                                    <td class="center">85 </td>
-                                    <td class="center">87</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>pozo 05</strong></td>
-                                    <td><i class="halflings-icon thumbs-up" style="color:red;"></i></td>
-                                    <td class="center">33 </td>
-                                    <td class="center">64 </td>
-                                    <td class="center">87</td>
-                                </tr>
-
-
+                            }
 
                             </tbody>
                         </table>

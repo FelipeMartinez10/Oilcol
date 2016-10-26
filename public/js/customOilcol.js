@@ -114,11 +114,11 @@ function initMap() {
         $(".cambiarAMapaRegiones").click(function()
         {
             $("#tablaPozos").hide();
-            $("#mapaRegiones").show();
+            $("#mapaCampo").show();
         });
         $(".cambiarATablaRegiones").click(function()
         {
-            $("#mapaRegiones").hide();
+            $("#mapaCampo").hide();
             $("#tablaPozos").show();
         });
 
