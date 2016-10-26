@@ -1,4 +1,4 @@
-@(pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
+@(pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(numEmergencias: Integer)(temperaturaP: String)(caudalP: String)(consumoP: String)(sensores : List[SensorEntity])
 
 @main("Pozo "+ pozo.getId) {
 
@@ -34,10 +34,10 @@
                     <p><strong>Estado actual</strong>: @pozo.getEstado</p>
                     <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
                     <p></p>
-                    <p><strong>Número Emergencias</strong>: 2</p>
-                    <p><strong>Temperatura promedio</strong>: 23.5  C</p>
-                    <p><strong>Caudal promedio</strong>: 87.5  Barriles</p>
-                    <p><strong>Consumo de energía promedio</strong>: 87.5  KW</p>
+                    <p><strong>Número Emergencias</strong>: @numEmergencias</p>
+                    <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
+                    <p><strong>Caudal promedio</strong>: @caudalP  Barriles</p>
+                    <p><strong>Consumo de energía promedio</strong>: @consumoP  KW</p>
                 </div>
 
                 <div style="height:30px;" ></div>
@@ -147,45 +147,19 @@
                         <thead>
                             <tr>
                                 <th >Id Sensor</th>
-                                <th>Estado</th>
+
                                 <th>Tipo</th>
-                                <th>Valor</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @for(sensor <- sensores) {
                             <tr>
-                                <td><strong>01</strong></td>
-                                <td class="center"><i class="halflings-icon warning-sign" style="color:red;"></i></td>
-                                <td class="center">Temperatura </td>
-                                <td class="center">10000 </td>
-                            </tr>
-                            <tr>
-                                <td><strong>02</strong></td>
-                                <td>Bien</td>
-                                <td class="center">Temperatura </td>
-                                <td class="center">16 </td>
-                            </tr>
-                            <tr>
-                                <td><strong>03</strong></td>
-                                <td>Bien</td>
-                                <td class="center">Temperatura </td>
-                                <td class="center">40 </td>
-                            </tr>
-                            <tr>
-                                <td><strong>04</strong></td>
-                                <td>Bien</td>
-                                <td class="center">Temperatura </td>
-                                <td class="center">35 </td>
-                            </tr>
-                            <tr>
-                                <td><strong>05</strong></td>
-                                <td>Bien</td>
-                                <td class="center">Temperatura </td>
-                                <td class="center">35 </td>
-                            </tr>
+                                <td><strong>@sensor.getId</strong></td>
 
-
-
+                                <td class="center">@sensor.getTipo </td>
+                            </tr>
+                        }
+                            
                         </tbody>
                     </table>
                 </div>

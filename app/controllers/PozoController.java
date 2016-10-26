@@ -125,32 +125,58 @@ public class PozoController extends Controller {
             String datosTemp = "";
             String datosCaudal = "";
             String datosConsumo = "";
+            int numEmergencias=0;
+            double tempProm=0;
+            double caudalProm=0;
+            double consumoProm=0;
+            int[] cantidades=new int[3];
 
-
-            for (int i = 0; i < informes.size(); i++)
+        for (int i = 0; i < informes.size(); i++)
             {
                 if (informes.get(i).getTipo().equals("0"))
                 {
+                    //Temperatura
+                    cantidades[0]++;
+                    tempProm+=informes.get(i).getDato();
                     if (i < informes.size() - 1)
                         datosTemp += informes.get(i).getDato() + ",";
                     else
                         datosTemp += informes.get(i).getDato();
                 } else if (informes.get(i).getTipo().equals("2"))
                 {
+                    //Caudal
+                    cantidades[1]++;
+                    caudalProm+=informes.get(i).getDato();
                     if (i < informes.size() - 1)
                         datosCaudal += informes.get(i).getDato() + ",";
                     else
                         datosCaudal += informes.get(i).getDato();
                 } else if (informes.get(i).getTipo().equals("1"))
                 {
+                    //Consumo
+                    cantidades[2]++;
+                    consumoProm+=informes.get(i).getDato();
                     if (i < informes.size() - 1)
                         datosConsumo += informes.get(i).getDato() + ",";
                     else
                         datosConsumo += informes.get(i).getDato();
                 }
+
+                if(informes.get(i).getEmergencia())
+                {
+                    numEmergencias++;
+                }
             }
 
-            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo));
+
+        if(!informes.isEmpty())
+        {
+            tempProm=tempProm/cantidades[0];
+            caudalProm=caudalProm/cantidades[1];
+            consumoProm=consumoProm/cantidades[2];
+        }
+
+            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores));
 
     }
 }
