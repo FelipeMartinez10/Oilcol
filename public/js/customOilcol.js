@@ -130,8 +130,8 @@ function initMap() {
         var fecha1=document.getElementById("fecha1").value;
         var fecha2=document.getElementById("fecha2").value;
         
-
-        var ruta = window.location.href +'/reporte/'+fecha1+'_'+fecha2;
+        var rutaT = window.location.href.split("/reporte")[0];
+        var ruta = rutaT +'/reporte/'+fecha1+'_'+fecha2;
 
         window.location.href=ruta;
 
