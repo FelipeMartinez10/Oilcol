@@ -175,8 +175,11 @@ public class PozoController extends Controller {
             caudalProm=caudalProm/cantidades[1];
             consumoProm=consumoProm/cantidades[2];
         }
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fR1=formato.format(new Date(1474919589038L));
+        String fR2=formato.format(new Date(1480103589039L));
 
-            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores));
+            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores, fR1, fR2));
 
     }
 

@@ -157,4 +157,106 @@ public class ReporteController extends Controller {
                 }
         );
     }
+
+
+    public Result getReportePozoHtml(Long idP, String fechas)
+    {
+
+        String f1=fechas.split("_")[0];
+        String f2=fechas.split("_")[1];
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date fecha1=new Date();
+        Date fecha2=new Date();
+        try
+        {
+            fecha1 = formato.parse(f1);
+            fecha2 = formato.parse(f2);
+
+            Long l1= fecha1.getTime();
+            Long l2= fecha2.getTime();
+            System.out.print(new Date(l1));
+            System.out.print(new Date(l2));
+
+            PozoEntity pozo = PozoEntity.FINDER.byId(idP);
+            List<SensorEntity> sensores = pozo.getSensores();
+            List<InformeEntity> informes = new ArrayList<>();
+                for (SensorEntity sensor: sensores)
+                {
+
+                    for(InformeEntity informe: sensor.getInformes())
+                    {
+                        if(informe.getFecha()>l1 && informe.getFecha()<l2  )
+                            informes.add(informe);
+                    }
+                }
+
+            String datosTemp = "";
+            String datosCaudal = "";
+            String datosConsumo = "";
+            int numEmergencias=0;
+            double tempProm=0;
+            double caudalProm=0;
+            double consumoProm=0;
+            int[] cantidades=new int[3];
+
+            for (int i = 0; i < informes.size(); i++)
+            {
+                if (informes.get(i).getTipo().equals("0"))
+                {
+                    //Temperatura
+                    cantidades[0]++;
+                    tempProm+=informes.get(i).getDato();
+                    if (i < informes.size() - 1)
+                        datosTemp += informes.get(i).getDato() + ",";
+                    else
+                        datosTemp += informes.get(i).getDato();
+                } else if (informes.get(i).getTipo().equals("2"))
+                {
+                    //Caudal
+                    cantidades[1]++;
+                    caudalProm+=informes.get(i).getDato();
+                    if (i < informes.size() - 1)
+                        datosCaudal += informes.get(i).getDato() + ",";
+                    else
+                        datosCaudal += informes.get(i).getDato();
+                } else if (informes.get(i).getTipo().equals("1"))
+                {
+                    //Consumo
+                    cantidades[2]++;
+                    consumoProm+=informes.get(i).getDato();
+                    if (i < informes.size() - 1)
+                        datosConsumo += informes.get(i).getDato() + ",";
+                    else
+                        datosConsumo += informes.get(i).getDato();
+                }
+
+                if(informes.get(i).getEmergencia())
+                {
+                    numEmergencias++;
+                }
+            }
+
+
+            if(!informes.isEmpty())
+            {
+                tempProm=tempProm/cantidades[0];
+                caudalProm=caudalProm/cantidades[1];
+                consumoProm=consumoProm/cantidades[2];
+            }
+
+            String fR1=formato.format(fecha1);
+            String fR2=formato.format(fecha2);
+
+            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores, fR1, fR2));
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("Se putio");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

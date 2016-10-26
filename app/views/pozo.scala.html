@@ -1,4 +1,4 @@
-@(pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(numEmergencias: Integer)(temperaturaP: String)(caudalP: String)(consumoP: String)(sensores : List[SensorEntity])
+@(pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(numEmergencias: Integer)(temperaturaP: String)(caudalP: String)(consumoP: String)(sensores : List[SensorEntity])(fecha1: String)(fecha2: String)
 
 @main("Pozo "+ pozo.getId) {
 
@@ -32,7 +32,7 @@
                 <div class="infoPozo" >
                     <p><strong>Emergencia actual</strong>: False</p>
                     <p><strong>Estado actual</strong>: @pozo.getEstado</p>
-                    <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte">@fecha2</strong></p>
                     <p></p>
                     <p><strong>Número Emergencias</strong>: @numEmergencias</p>
                     <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
@@ -154,7 +154,7 @@
                         <tbody>
                         @for(sensor <- sensores) {
                             <tr>
-                                <td><strong>@sensor.getId</strong></td>
+                                <td><strong ><a href="../sensor/@sensor.getId">@sensor.getId</a></strong></td>
 
                                 <td class="center">@sensor.getTipo </td>
                             </tr>
@@ -164,6 +164,8 @@
                     </table>
                 </div>
             </div>
+
+
 
 
 

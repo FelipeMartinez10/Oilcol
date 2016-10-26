@@ -83,3 +83,5 @@ GET     /user/:id/reportes/:fechas  controllers.ReporteController.getReporte(id 
 POST    /reporte                    controllers.ReporteController.createReporte
 PUT     /reporte/:id                controllers.ReporteController.updateReporte(id : Long)
 DELETE  /reporte/:id                controllers.ReporteController.deleteReporte(id : Long)
+
+GET     /oilcol/pozo/:id/reporte/:fechas  controllers.ReporteController.getReportePozoHtml(id : Long, fechas : String)

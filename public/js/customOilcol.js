@@ -123,3 +123,16 @@ function initMap() {
 
     });
 
+    function reporteFecha( )
+    {
+
+        var fecha1=document.getElementById("fecha1").value;
+        var fecha2=document.getElementById("fecha2").value;
+        
+
+        var ruta = window.location.href +'/reporte/'+fecha1+'_'+fecha2;
+
+        window.location.href=ruta;
+
+
+    }
