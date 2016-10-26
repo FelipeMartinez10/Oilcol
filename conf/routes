@@ -66,6 +66,7 @@ POST    /pozo/:id/sensor            controllers.SensorController.createSensorEnP
 POST    /sensor                     controllers.SensorController.createSensor
 PUT     /sensor/:id                 controllers.SensorController.updateSensor(id : Long)
 DELETE  /sensor/:id                 controllers.SensorController.deleteSensor(id : Long)
+GET     /oilcol/sensor/:id            controllers.SensorController.sensorHtml(id : Long)
 
 #Controlador del Informe
 GET     /informes                   controllers.InformeController.getInformes
