@@ -4,7 +4,6 @@ import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by jp.gonzalez14 on 27/08/2016.
@@ -12,6 +11,10 @@ import java.util.Date;
 @Entity
 @Table(name="informeEntity")
 public class InformeEntity extends Model {
+
+    public  final static String TEMPERATURA = "0";
+    private final static String CONSUMO = "1";
+    private final static String CAUDAL = "2";
 
     public static Finder<Long, InformeEntity> FINDER = new Finder<>(InformeEntity.class);
 

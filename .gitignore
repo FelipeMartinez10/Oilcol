@@ -8,3 +8,5 @@ target
 /RUNNING_PID
 *.sbtserver
 *.log
+*.sql
+conf/evolutions/default/1.sql

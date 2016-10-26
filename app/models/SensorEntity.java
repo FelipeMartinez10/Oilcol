@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name="sensorEntity")
 public class SensorEntity extends Model {
 
+
     public static Finder<Long, SensorEntity> FINDER = new Finder<>(SensorEntity.class);
 
     @Id
@@ -72,7 +73,23 @@ public class SensorEntity extends Model {
         this.pozo = pozo;
     }
 
-    public void addInforme(InformeEntity nuevo){informes.add(nuevo);}
+    public void addInforme(InformeEntity nuevo){
+        if(nuevo.getTipo().equals("0")&&tipo.equals(TipoSensor.TemperaturaBomba)){
+            informes.add(nuevo);}else if(nuevo.getTipo().equals("1")&&tipo.equals(TipoSensor.ConsumoEnergetico)){informes.add(nuevo);}
+            else if(nuevo.getTipo().equals("2")&&tipo.equals(TipoSensor.BarrilesCrudo)){informes.add(nuevo);}
+            else{
+            try {
+                throw  new Exception("debe coincidir el tipo de informe con el tipo de sensor:" +
+                    "Asi: /n"+"Informe tipo 0 --> sensor temperaturaBomba 2"+"/n" +
+                    "Informe tipo 1 --> sensorEnergetico 1"+"/n" +"" +
+                    "Informe tipo 3 --> Barriles de crudo 0");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
     @Override
     public String toString() {
         return "SensorEntity{" +
