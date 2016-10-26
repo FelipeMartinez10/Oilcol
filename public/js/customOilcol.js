@@ -100,6 +100,9 @@ function initMap() {
 
     $(document).ready(function()
     {
+
+
+
         $(".cambiarAMapa").click(function()
         {
             $("#tablaPozos").hide();

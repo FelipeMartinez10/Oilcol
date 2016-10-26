@@ -53,65 +53,74 @@
             </div>
 
                 <!-- LM Grafica Temperatura -->
-            <div class="box span4">
 
-                <div class="box-header">
-                    <div id="infoTemperatura" hidden>@datosTemp</div>
-                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura</h2>
-                    <div class="box-icon">
-                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                @if(sensor.getTipo.equals(TipoSensor.BarrilesCrudo.toString)||sensor.getTipo.equals(TipoSensor.ConsumoEnergetico.toString)){
+                    @if(sensor.getTipo.equals(TipoSensor.ConsumoEnergetico.toString)){
+                        <div class="box span4">
+
+                            <div class="box-header">
+                                <div id="infoConsumo" hidden>@datosConsumo</div>
+                                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div id="consumo"  class="center" style="height:250px;" >
+                                </div>
+                                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+                            </div>
+                        </div>
+                    } else{
+                        <div class="box span4">
+
+                            <div class="box-header">
+                                <div id="infoCaudal" hidden>@datosCaudal</div>
+                                <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal</h2>
+                                <div class="box-icon">
+                                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div id="caudal"  class="center" style="height:250px;" >
+                                </div>
+                                    <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+                            </div>
+                        </div>
+
+                    }
+                }else {
+                    <div class="box span4">
+
+                        <div class="box-header">
+                            <div id="infoTemperatura" hidden>@datosTemp</div>
+                            <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Temperatura</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                                <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                                <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div id="temperatura"  class="center" style="height:250px;" >
+                            </div>
+                                <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
+                        </div>
                     </div>
-                </div>
-                <div class="box-content">
-                    <div id="temperatura"  class="center" style="height:250px;" >
-                    </div>
+                }
 
-                </div>
-
-            </div><!--/span-->
+            <!--/span-->
 
             <!-- LM Grafica Caudal -->
-            <div class="box span4">
-
-                <div class="box-header">
-                    <div id="infoCaudal" hidden>@datosCaudal</div>
-                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Caudal</h2>
-                    <div class="box-icon">
-                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                    </div>
-                </div>
-                <div class="box-content">
-                    <div id="caudal"  class="center" style="height:250px;" >
-                    </div>
-
-                </div>
-
-            </div><!--/span-->
 
 
-            <!-- LM Grafica Caudal -->
-            <div class="box span4">
 
-                <div class="box-header">
-                    <div id="infoConsumo" hidden>@datosConsumo</div>
-                    <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Consumo</h2>
-                    <div class="box-icon">
-                        <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
-                        <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-                    </div>
-                </div>
-                <div class="box-content">
-                    <div id="consumo"  class="center" style="height:250px;" >
-                    </div>
-                        <!-- <p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p> -->
-                </div>
 
-            </div><!--/span-->
+            <!--/span-->
             <!--div class="widget yellow span4 noMargin" onTablet="span12" onDesktop="span4">
                 <h2><span class="glyphicons fire"><i></i></span> Datos Temperatura Entrantes</h2>
                 <hr>
@@ -122,6 +131,7 @@
 
                 <!-- LM termina primera fila -->
         </div>
+
     <!--/row-->
 
 

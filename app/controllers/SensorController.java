@@ -126,6 +126,10 @@ public class SensorController extends Controller {
       String datosTemp = "";
       String datosCaudal = "";
       String datosConsumo = "";
+      //TEMPERATURA = "0"
+      //CONSUMO = "1"
+      //CAUDAL = "2"
+
       for (int i = 0; i < informes.size(); i++)
       {
           if (informes.get(i).getTipo().equals("0"))
@@ -150,7 +154,9 @@ public class SensorController extends Controller {
                   datosConsumo += informes.get(i).getDato();
           }
       }
-
+    System.out.println("datos de temperatura: "+datosTemp);
+      System.out.println("datos de consumo: "+datosConsumo);
+      System.out.println("datos de caudal: "+datosCaudal);
    return ok(views.html.sensor.render(sensor,datosTemp,datosCaudal,datosConsumo));
 
     }

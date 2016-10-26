@@ -13,10 +13,7 @@ import java.util.List;
 @Table(name="sensorEntity")
 public class SensorEntity extends Model {
 
-    public  final static String TEMPERATURA = "0";
-    private final static String CONSUMO = "1";
-    private final static String CAUDAL = "2";
-    
+
     public static Finder<Long, SensorEntity> FINDER = new Finder<>(SensorEntity.class);
 
     @Id
