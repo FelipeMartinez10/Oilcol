@@ -1,0 +1,33 @@
+@(title: String)
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>Oilcol</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("css/style2.css")">
+    </head>
+    <body>
+
+        <div class="vid-container">
+            <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
+                <source src="http://ia600808.us.archive.org/19/items/HighFallsTimeLapse/HighFalls.mp4" type="video/mp4">
+            </video>
+            <div class="inner-container">
+                <video id="Video2" class="bgvid inner" autoplay="false" muted="muted" preload="auto" loop>
+                    <source src="http://ia600808.us.archive.org/19/items/HighFallsTimeLapse/HighFalls.mp4" type="video/mp4">
+                </video>
+                <div class="box">
+                    <h1>Login</h1>
+                    <input type="text" placeholder="Username"/>
+                    <input type="text" placeholder="Password"/>
+                    <button>Login</button>
+                    <p>Not a member? <span>Sign Up</span></p>
+                </div>
+            </div>
+        </div>
+        <script src="@routes.Assets.versioned("js/jquery-3.1.1.min.js")"></script>
+
+        <script src="@routes.Assets.versioned("js/index.js")"></script>
+
+    </body>
+</html>
