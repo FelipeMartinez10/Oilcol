@@ -154,3 +154,21 @@ function postAjax() {
                     contentType: "application/json"
                   });
                   };
+
+    function crearPozo() {
+        var datos = Contact("Joan","JefeDeCampo");
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:9000/user",
+            data: JSON.stringify({
+                "name":"joan",
+                "tipo":"JefeDeCampo"
+
+            }),
+            error: function(e) {
+                console.log(e);
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    };
