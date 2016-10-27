@@ -5,14 +5,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.CampoEntity;
 import models.UsuarioEntity;
-import play.data.*;
+import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-
 
 import static play.data.Form.form;
 import static play.libs.Json.toJson;
@@ -115,7 +114,7 @@ public class UsuarioController extends Controller {
         public String password;
 
         public String validate() {
-            if (!email.equals("a@a.com") && !email.equals("perra") ) {
+            if (!email.equals("a@a.com") && !password.equals("a") ) {
                     return "Invalid user or password";
             }
             return null;
@@ -144,8 +143,10 @@ public class UsuarioController extends Controller {
             session("email", loginForm.get().email);
             return redirect(
                     routes.RegionController.regionesHtml()
+
             );
         }
     }
+
 
 }
