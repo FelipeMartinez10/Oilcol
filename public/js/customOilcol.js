@@ -137,7 +137,16 @@ function initMap() {
 
 
     }
-function postAjax() {
+    function crearSensor( )
+    {
+
+        var tipo=document.getElementById("tipoSensorCrear").value;
+
+        alert(tipo);
+        //window.location.href=ruta;
+
+
+    }function postAjax() {
                   var datos = Contact("Joan","JefeDeCampo");
                   $.ajax({
                     type: 'POST',
