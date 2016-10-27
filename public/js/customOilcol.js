@@ -179,22 +179,32 @@ function initMap() {
                     dataType: "json",
                     contentType: "application/json"
                   });
-                  };
+                  }
 
     function crearPozo() {
 
+        var estado=document.getElementById("estadoPozoCrear").value;
+
+        alert(estado);
+        //window.location.href=ruta;
+        var data1;
+        var idP= document.getElementById('idCampo').innerHTML;
+
         $.ajax({
             type: 'POST',
-            url: "http://localhost:9000/user",
+            url: "http://localhost:9000/campos/"+idP+"/pozo",
             data: JSON.stringify({
-                "name":"joan",
-                "tipo":"JefeDeCampo"
 
-            }),
+                "estado":""+ document.getElementById('estadoPozoCrear').innerHTML +"",
+                "longitud":""+ document.getElementById('LongitudPozoCrear').innerHTML +"",
+                "latitud":""+ document.getElementById('LatitudPozoCrear').innerHTML +""
+
+    }),
             error: function(e) {
                 console.log(e);
             },
             dataType: "json",
             contentType: "application/json"
         });
+        window.location.href=window.location.href;
     };
