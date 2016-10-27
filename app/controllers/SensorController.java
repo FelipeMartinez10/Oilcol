@@ -46,10 +46,11 @@ public class SensorController extends Controller {
         return CompletableFuture.supplyAsync(
                 ()->{
                     PozoEntity pozo = PozoEntity.FINDER.byId(idPozo);
+                    sensor.save();
                     pozo.addSensor(sensor);
                     sensor.setPozo(pozo);
                     pozo.update();
-                    sensor.save();
+                    sensor.update();
                     return sensor;
                 }
         ).thenApply(

@@ -144,10 +144,27 @@ function initMap() {
 
         alert(tipo);
         //window.location.href=ruta;
+        var data1;
+    var idP= document.getElementById('idPozo').innerHTML;
+
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:9000/pozo/"+idP+"/sensor",
+            data: JSON.stringify({
+
+                "tipo":""+ document.getElementById('tipoSensorCrear').innerHTML +""
+            }),
+            error: function(e) {
+                console.log(e);
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+        window.location.href=window.location.href;
 
 
     }function postAjax() {
-                  var datos = Contact("Joan","JefeDeCampo");
+
                   $.ajax({
                     type: 'POST',
                     url: "http://localhost:9000/user",
@@ -165,7 +182,7 @@ function initMap() {
                   };
 
     function crearPozo() {
-        var datos = Contact("Joan","JefeDeCampo");
+
         $.ajax({
             type: 'POST',
             url: "http://localhost:9000/user",

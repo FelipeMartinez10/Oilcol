@@ -57,11 +57,12 @@ public class SensorEntity extends Model {
     }
 
     public void setTipo(String tipo) {
-        //if(TipoSensor.BarrilesCrudo.toString().equalsIgnoreCase(tipo) )
-          //  this.tipo = TipoSensor.BarrilesCrudo;
-        //else if(TipoSensor.ConsumoEnergetico.toString().equalsIgnoreCase(tipo) )
-          //  this.tipo = TipoSensor.ConsumoEnergetico;
-        //else
+        System.out.print(tipo);
+        if(TipoSensor.BarrilesCrudo.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.BarrilesCrudo;
+        else if(TipoSensor.ConsumoEnergetico.toString().equalsIgnoreCase(tipo) )
+            this.tipo = TipoSensor.ConsumoEnergetico;
+        else
             this.tipo = TipoSensor.TemperaturaBomba;
     }
 
