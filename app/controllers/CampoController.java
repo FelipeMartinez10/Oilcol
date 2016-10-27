@@ -136,83 +136,58 @@ public class CampoController extends Controller{
         pozoos += pozos.size();
         for (PozoEntity pozo: pozos)
         {
-            if(pozo.getEstado().equals(EstadoPozo.Produccion))produccion++;
-            if(pozo.getEstado().equals(EstadoPozo.Clausurado))clausurados++;
-            if(pozo.getEstado().equals(EstadoPozo.Abierto))abierto++;
-            if(pozo.getEstado().equals(EstadoPozo.Parado))parado++;
+            //if(pozo.getEstado().equals(EstadoPozo.Produccion))produccion++;
+            //if(pozo.getEstado().equals(EstadoPozo.Clausurado))clausurados++;
+            //if(pozo.getEstado().equals(EstadoPozo.Abierto))abierto++;
+            //if(pozo.getEstado().equals(EstadoPozo.Parado))parado++;
 
-        List<SensorEntity> sensores = SensorEntity.FINDER.where().in("pozo_id", pozo.getId()).findList();
-        for (int i = 0; i < sensores.size(); i++){
-            List<InformeEntity> informes = InformeEntity.FINDER.where().in("sensor_id", sensores.get(i).getId()).findList();
-            for (int j = 0; j < informes.size(); j++)
+        List<SensorEntity> sensores = pozo.getSensores();
+        for (SensorEntity sensor: sensores)
+        {
+            List<InformeEntity> informes = sensor.getInformes();
+            for (InformeEntity informe : informes)
             {
-                if (informes.get(j).getTipo().equals("0"))
+                if (informe.getTipo().equals("0"))
                 {
                     cantidades[0]++;
-                    tempProm+=informes.get(i).getDato();
+                    tempProm+=informe.getDato();
+                    datosTemp+=informe.getDato()+",";
+                    dato1 += informe.getDato();
 
-                    dato1 += informes.get(j).getDato();
-                    if (j < informes.size() - 1)
-                        dato1= dato1/informes.size();
-
-                } else if (informes.get(j).getTipo().equals("2"))
-                {
-                    cantidades[1]++;
-                    caudalProm+=informes.get(i).getDato();
-                    total1+=informes.get(i).getDato();
-                    dato2 += informes.get(j).getDato();
-                    if (j < informes.size() - 1)
-                        dato2= dato2/informes.size();
-
-                } else if (informes.get(j).getTipo().equals("1"))
+                } else if (informe.getTipo().equals("2"))
                 {
                     cantidades[2]++;
-                    total2+=informes.get(i).getDato();
-                    consumoProm+=informes.get(i).getDato();
-                    dato3 += informes.get(j).getDato();
-                    if (j < informes.size() - 1)
-                        dato3= dato3/informes.size();
+                    consumoProm+=informe.getDato();
+                    datosConsumo+=informe.getDato()+",";
+                    dato2 += informe.getDato();
+
+                } else if (informe.getTipo().equals("1"))
+                {
+                    cantidades[1]++;
+                    caudalProm+=informe.getDato();
+                    datosCaudal+=informe.getDato()+",";
+                    dato1 += informe.getDato();
+
 
                 }
-                if(informes.get(j).getEmergencia())
+                if(informe.getEmergencia())
                 {
                     numEmergencias++;
                 }
             }
-            if (i < informes.size() - 1){
-                datosTemp += dato1 + ",";
-                datosCaudal += dato2 + ",";
-                datosConsumo += dato3 + ",";
-            }
-            else{
-                datosTemp += dato1;
-                datosCaudal += dato2;
-                datosConsumo += dato3;
-            }
-            if(!informes.isEmpty())
+
+        }
+            if(tempProm!=0)
             {
                 tempProm=tempProm/cantidades[0];
                 caudalProm=caudalProm/cantidades[1];
                 consumoProm=consumoProm/cantidades[2];
             }
-            if(sensores.get(i).getTipo().equals(TipoSensor.TemperaturaBomba)){
-                tipo1++;
-            }
-            else if(sensores.get(i).getTipo().equals(TipoSensor.BarrilesCrudo)){
-                tipo2++;
-            }
-            else if(sensores.get(i).getTipo().equals(TipoSensor.ConsumoEnergetico)){
-                tipo2++;
-            }
 
         }
-           tempProm=tempProm/tipo1;
-           caudalProm=caudalProm/tipo2;
-           consumoProm=consumoProm/tipo3;
-        }
 
 
-        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", tempProm+"", caudalProm+"", consumoProm+"", total1+"", total2+"", produccion+"", clausurados+"", abierto+"", parado+""));
+        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", tempProm+"", caudalProm+"", consumoProm+"", dato1+"", dato2+""));
 
     }
 

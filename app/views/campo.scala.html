@@ -1,4 +1,4 @@
-@(campo: CampoEntity)(numPozo: String)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(pozos : List[PozoEntity])(numEmergencias: String)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: String)(total2: String)(produccion: String)(clausurado: String)(abierto: String)(parado: String)
+@(campo: CampoEntity)(numPozo: String)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(pozos : List[PozoEntity])(numEmergencias: String)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: String)(total2: String)
 
 @main("Campo "+ campo.getId){
 
@@ -31,7 +31,7 @@
                 <div class="infoCampo" >
                     <p><strong>Total pozos</strong>: @numPozo</p>
                     <p><strong>Numero Emergencias</strong>: @numEmergencias</p>
-                    <p><strong>Estado de los pozos</strong>: @produccion en producción, @clausurado clausurados, @abierto abiertos y @parado parados.</p>
+
                         <!-- <ul >
 								<li>5 en producción</li>
 								<li>2 clausurados</li>
