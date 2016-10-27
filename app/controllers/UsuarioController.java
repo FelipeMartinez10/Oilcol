@@ -143,7 +143,7 @@ public class UsuarioController extends Controller {
             session().clear();
             session("email", loginForm.get().email);
             return redirect(
-                    routes.HomeController.index()
+                    routes.RegionController.regionesHtml()
             );
         }
     }
