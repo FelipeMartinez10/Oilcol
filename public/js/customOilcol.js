@@ -33,10 +33,12 @@ function initMap() {
         for (var i = 0; i < pos.length; i += 1) {
             locations[i]=['Pozo numero'+ i, pos[i].split(',')[0],pos[i].split(',')[1],i];
         }
+
+        var uluru = {lat: parseFloat(pos[0].split(',')[0]), lng: parseFloat(pos[0].split(',')[1])};
     
     var map = new google.maps.Map(document.getElementById('mapaCampo'), {
       zoom: 10,
-      center: new google.maps.LatLng(4.604534, -74.069729)
+      center: uluru
 
       // ,mapTypeId: google.maps.MapTypeId.ROADMAP
     });
