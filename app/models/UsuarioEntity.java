@@ -47,6 +47,7 @@ public class UsuarioEntity extends Model
             this.tipo = TipoUsuario.JefeDeProduccion;
 
     }
+
     public Long getId() {
         return id;
     }
@@ -66,6 +67,11 @@ public class UsuarioEntity extends Model
     public String getTipo() {
         return tipo.toString();
     }
+
+//    public UsuarioEntity authenticate(String email, String password) {
+//        return FINDER.where().eq("email", email)
+//                .eq("password", password).findUnique();
+//    }
 
     public void setTipo(String tipo) {
         if(TipoUsuario.JefeDeCampo.toString().equalsIgnoreCase(tipo) )
