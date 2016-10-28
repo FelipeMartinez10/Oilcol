@@ -136,7 +136,6 @@
             <div class="box-header">
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Sensores</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
                     <a  id="btnCrearSensor" data-toggle="modal" href="#dialogoCrearSensor" ><i class="halflings-icon plus"></i></a>
@@ -149,16 +148,21 @@
                         <thead>
                             <tr>
                                 <th >Id Sensor</th>
-
                                 <th>Tipo</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         @for(sensor <- sensores) {
                             <tr>
                                 <td><strong ><a href="../sensor/@sensor.getId">@sensor.getId</a></strong></td>
-
                                 <td class="center">@sensor.getTipo </td>
+                                <td><a class="btn btn-info" href="#">
+                                    <i class="halflings-icon white edit"></i>
+                                </a>
+                                    <a class="btn btn-danger" onclick="deleteSensor(@sensor.getId);" href="#">
+                                        <i class="halflings-icon white trash"></i>
+                                    </a></td>
                             </tr>
                         }
 

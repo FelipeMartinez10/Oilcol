@@ -219,7 +219,6 @@
             <div class="box-header">
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Campos</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
                 </div>
@@ -239,6 +238,7 @@
                                     <th >Id Campo</th>
                                     <th>Region</th>
                                     <th>Nombre Campo</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -247,6 +247,13 @@
                                     <td><strong ><a href="/oilcol/oilcol/../campo/@campo.getId">@campo.getId</a></strong></td>
                                     <td class="center">@campo.getRegion.getName </td>
                                     <td class="center">@campo.getName </td>
+                                    <td><a class="btn btn-info" href="#">
+                                        <i class="halflings-icon white edit"></i>
+                                    </a>
+                                        <a class="btn btn-danger" href="#">
+                                        <i class="halflings-icon white trash"></i>
+                                    </a>
+                                    </td>
                                 </tr>
                             }
 

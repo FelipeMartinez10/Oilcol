@@ -31,7 +31,7 @@
                 <div class="infoCampo" >
                     <p><strong>Total pozos</strong>: @numPozo</p>
                     <p><strong>Numero Emergencias</strong>: @numEmergencias</p>
-
+                    <p><strong>Estado de los pozos</strong>: @produccion en producción, @clausurado clausurados, @abierto abiertos y @parado parados.</p>
                         <!-- <ul >
 								<li>5 en producción</li>
 								<li>2 clausurados</li>
@@ -61,7 +61,6 @@
             <div class="box-header">
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Pozos del campo</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
                     <a  id="btnCrearPozo" data-toggle="modal" href="#dialogoCrearPozo" ><i class="halflings-icon plus"></i></a>
@@ -79,14 +78,20 @@
                                 <tr>
                                     <th >Id Pozo</th>
                                     <th>Estado</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             @for(pozo <- pozos) {
                                 <tr>
                                     <td><strong ><a href="../pozo/@pozo.getId">@pozo.getId</a></strong></td>
-
                                     <td class="center">@pozo.getEstado </td>
+                                    <td><a class="btn btn-info"  href="#">
+                                        <i class="halflings-icon white edit"></i>
+                                    </a>
+                                        <a class="btn btn-danger" onclick="deletePozo(@pozo.getId);" href="#">
+                                            <i class="halflings-icon white trash"></i>
+                                        </a></td>
                                 </tr>
                             }
 

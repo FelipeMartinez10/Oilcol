@@ -154,7 +154,7 @@ function initMap() {
             url: "http://localhost:9000/pozo/"+idP+"/sensor",
             data: JSON.stringify({
 
-                "tipo":""+ document.getElementById('tipoSensorCrear').innerHTML +""
+                "tipo":""+ document.getElementById('tipoSensorCrear').value +""
             }),
             error: function(e) {
                 console.log(e);
@@ -186,8 +186,6 @@ function initMap() {
     function crearPozo() {
 
         var estado=document.getElementById("estadoPozoCrear").value;
-
-        alert(estado);
         //window.location.href=ruta;
         var data1;
         var idP= document.getElementById('idCampo').innerHTML;
@@ -197,9 +195,9 @@ function initMap() {
             url: "http://localhost:9000/campos/"+idP+"/pozo",
             data: JSON.stringify({
 
-                "estado":""+ document.getElementById('estadoPozoCrear').innerHTML +"",
-                "longitud":""+ document.getElementById('LongitudPozoCrear').innerHTML +"",
-                "latitud":""+ document.getElementById('LatitudPozoCrear').innerHTML +""
+                "estado":""+ document.getElementById('estadoPozoCrear').value +"",
+                "longitud":""+ document.getElementById('LongitudPozoCrear').value +"",
+                "latitud":""+ document.getElementById('LatitudPozoCrear').value +""
 
     }),
             error: function(e) {
@@ -208,5 +206,21 @@ function initMap() {
             dataType: "json",
             contentType: "application/json"
         });
+        window.location.href=window.location.href;
+    };
+    function deletePozo( idP) {
+        $.ajax({
+            type: 'DELETE',
+            url: "http://localhost:9000/pozo/"+idP.valueOf()
+        });
+        window.location.href=window.location.href;
+        window.location.href=window.location.href;
+    };
+    function deleteSensor( idP) {
+        $.ajax({
+            type: 'DELETE',
+            url: "http://localhost:9000/sensor/"+idP.valueOf()
+        });
+        window.location.href=window.location.href;
         window.location.href=window.location.href;
     };
