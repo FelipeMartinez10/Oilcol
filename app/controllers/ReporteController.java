@@ -265,4 +265,118 @@ public class ReporteController extends Controller {
     }
 
 
+    public Result getReporteCampoHtml(Long idC, String fechas)
+    {
+        String f1=fechas.split("_")[0];
+        String f2=fechas.split("_")[1];
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date fecha1=new Date();
+        Date fecha2=new Date();
+        try
+        {
+            fecha1 = formato.parse(f1);
+            fecha2 = formato.parse(f2);
+
+            Long l1= fecha1.getTime();
+            Long l2= fecha2.getTime();
+            System.out.print(new Date(l1));
+            System.out.print(new Date(l2));
+        CampoEntity campo = CampoEntity.FINDER.byId(idC);
+        double total1=0;
+        double total2=0;
+        String datosTemp = "";
+        String datosCaudal = "";
+        String datosConsumo = "";
+        int numEmergencias = 0;
+        double dato1 = 0;
+        double dato2 = 0;
+        double dato3 = 0;
+        int tipo1=0;
+        int tipo2=0;
+        int tipo3=0;
+        double tempProm=0;
+        double caudalProm=0;
+        double consumoProm=0;
+        int[] cantidades=new int[3];
+        int produccion=0;
+        int clausurados=0;
+        int abierto=0;
+        int parado=0;
+        String pozoos="";
+
+        List<PozoEntity> pozos = PozoEntity.FINDER.where().in("campo_id", idC).findList();
+        pozoos += pozos.size();
+        for (PozoEntity pozo: pozos)
+        {
+            //if(pozo.getEstado().equals(EstadoPozo.Produccion))produccion++;
+            //if(pozo.getEstado().equals(EstadoPozo.Clausurado))clausurados++;
+            //if(pozo.getEstado().equals(EstadoPozo.Abierto))abierto++;
+            //if(pozo.getEstado().equals(EstadoPozo.Parado))parado++;
+
+            List<SensorEntity> sensores = pozo.getSensores();
+            for (SensorEntity sensor: sensores)
+            {
+                List<InformeEntity> informes = sensor.getInformes();
+                for (InformeEntity informe : informes)
+                {
+
+                    if(informe.getFecha()>l1&&informe.getFecha()<l2)
+                    {
+                        if (informe.getTipo().equals("0"))
+                        {
+                            cantidades[0]++;
+                            tempProm += informe.getDato();
+                            datosTemp += informe.getDato() + ",";
+                            dato1 += informe.getDato();
+
+                        } else if (informe.getTipo().equals("2"))
+                        {
+                            cantidades[2]++;
+                            consumoProm += informe.getDato();
+                            datosConsumo += informe.getDato() + ",";
+                            dato2 += informe.getDato();
+
+                        } else if (informe.getTipo().equals("1"))
+                        {
+                            cantidades[1]++;
+                            caudalProm += informe.getDato();
+                            datosCaudal += informe.getDato() + ",";
+                            dato1 += informe.getDato();
+
+
+                        }
+                        if (informe.getEmergencia())
+                        {
+                            numEmergencias++;
+                        }
+                    }
+                }
+
+            }
+            if(tempProm!=0)
+            {
+                tempProm=tempProm/cantidades[0];
+                caudalProm=caudalProm/cantidades[1];
+                consumoProm=consumoProm/cantidades[2];
+            }
+
+        }
+        String sConsumoP = (consumoProm+"     ").substring(0,(consumoProm+"").indexOf(".")+3);
+        String sCaudalP = (caudalProm+"    ").substring(0,(caudalProm+"").indexOf(".")+3);
+        String sTempProm =(tempProm+"      ").substring(0,(tempProm+"").indexOf(".")+3);
+
+            String fR1=formato.format(fecha1);
+            String fR2=formato.format(fecha2);
+
+        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+"",fR1,fR2));
+        }
+        catch(Exception e)
+        {
+            System.out.println("Se putio");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

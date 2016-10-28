@@ -7,7 +7,9 @@ import models.*;
 import play.libs.Json;
 import play.mvc.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -189,7 +191,11 @@ public class CampoController extends Controller{
         String sCaudalP = (caudalProm+"    ").substring(0,(caudalProm+"").indexOf(".")+3);
         String sTempProm =(tempProm+"      ").substring(0,(tempProm+"").indexOf(".")+3);
 
-        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+""));
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fR1=formato.format(new Date(1474919589038L));
+        String fR2=formato.format(new Date(1480103589039L));
+
+        return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+"",fR1,fR2));
 
     }
 

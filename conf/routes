@@ -88,3 +88,4 @@ PUT     /reporte/:id                controllers.ReporteController.updateReporte(
 DELETE  /reporte/:id                controllers.ReporteController.deleteReporte(id : Long)
 
 GET     /oilcol/pozo/:id/reporte/:fechas  controllers.ReporteController.getReportePozoHtml(id : Long, fechas : String)
+GET     /oilcol/campo/:id/reporte/:fechas  controllers.ReporteController.getReporteCampoHtml(id : Long, fechas : String)

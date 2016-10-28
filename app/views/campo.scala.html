@@ -1,4 +1,4 @@
-@(campo: CampoEntity)(numPozo: String)(datosTemp: String)(datosConsumo: String)(datosCaudal: String)(pozos : List[PozoEntity])(numEmergencias: String)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: String)(total2: String)
+@(campo: CampoEntity)(numPozo: String)(datosTemp: String)(datosConsumo: String)(datosCaudal: String)(pozos : List[PozoEntity])(numEmergencias: String)(temperaturaP: String)(caudalP: String)(consumoP: String)(total1: String)(total2: String)(fecha1: String)(fecha2: String)
 
 @main("Campo "+ campo.getId){
 
@@ -38,7 +38,7 @@
 								<li>1 abiertos</li>
 								<li>2 parados</li>
 							</ul> -->
-                    <p>Los siguientes calculos muestran los datos entre las fecha <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte">@fecha2</strong></p>
                     <p></p>
                     <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
                     <p><strong>Caudal promedio</strong>: @caudalP  Barriles</p>
