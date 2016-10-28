@@ -184,7 +184,11 @@ public class PozoController extends Controller {
         String fR1=formato.format(new Date(1474919589038L));
         String fR2=formato.format(new Date(1480103589039L));
 
-            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, tempProm+"", caudalProm+"", consumoProm+"", sensores, fR1, fR2));
+        String sConsumoP = (consumoProm+"   ").substring(0,(consumoProm+"").indexOf(".")+3);
+        String sCaudalP = (caudalProm+"   ").substring(0,(caudalProm+"").indexOf(".")+3);
+        String sTempProm =(tempProm+"   ").substring(0,(tempProm+"").indexOf(".")+3);
+
+            return ok(views.html.pozo.render(pozo, datosTemp, datosCaudal, datosConsumo, numEmergencias, sTempProm, sCaudalP, sConsumoP, sensores, fR1, fR2));
 
     }
 

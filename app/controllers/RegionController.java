@@ -140,7 +140,7 @@ public class RegionController extends Controller {
                 }
             }
             consumo.add(cConsumo);
-            temperaturaPromedio.add(cTemperaturaProm/cantidadT);
+            temperaturaPromedio.add((double)(((int)((cTemperaturaProm/cantidadT)*1000))/1000));
             caudal.add(cCaudal);
             numPozos.add(cPozos);
 
