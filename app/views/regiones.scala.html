@@ -36,6 +36,7 @@
                 </div>
                 <div class="box-content">
                     <div class="span6 infoPozo" >
+                        <p><strong>Codigo Region</strong>: @regiones.get(0).getId</p>
                         <p><strong>Número de campos</strong>: @regiones.get(0).getCampos.size()</p>
                         <p><strong>Número de pozos</strong>: @numPozos.get(0)</p>
                         <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
@@ -72,6 +73,7 @@
                         </div>
                         <div class="box-content">
                             <div class="span6 infoPozo" >
+                                <p><strong>Codigo Region</strong>: @regiones.get(1).getId</p>
                                 <p><strong>Número de campos</strong>: @regiones.get(1).getCampos.size()</p>
                                 <p><strong>Número de pozos</strong>: @numPozos.get(1)</p>
                                 <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
@@ -110,6 +112,7 @@
                     </div>
                     <div class="box-content">
                         <div class="span6 infoPozo" >
+                            <p><strong>Codigo Region</strong>: @regiones.get(2).getId</p>
                             <p><strong>Número de campos</strong>: @regiones.get(2).getCampos.size()</p>
                             <p><strong>Número de pozos</strong>: @numPozos.get(2)</p>
                             <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
@@ -148,6 +151,7 @@
                     </div>
                     <div class="box-content">
                         <div class="span6 infoPozo" >
+                            <p><strong>Codigo Region</strong>: @regiones.get(3).getId</p>
                             <p><strong>Número de campos</strong>: @regiones.get(3).getCampos.size()</p>
                             <p><strong>Número de pozos</strong>: @numPozos.get(3)</p>
                             <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
@@ -186,6 +190,7 @@
                     </div>
                     <div class="box-content">
                         <div class="span6 infoPozo" >
+                            <p><strong>Codigo Region</strong>: @regiones.get(4).getId</p>
                             <p><strong>Número de campos</strong>: @regiones.get(4).getCampos.size()</p>
                             <p><strong>Número de pozos</strong>: @numPozos.get(4)</p>
                             <p>Datos para: <strong>07/10/2016</strong> y <strong>23/10/2016</strong></p>
@@ -221,6 +226,7 @@
                 <div class="box-icon">
                     <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
                     <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                    <a  id="btnCrearCampo" data-toggle="modal" href="#dialogoCrearCampo" ><i class="halflings-icon plus"></i></a>
                 </div>
 
             </div>
@@ -250,7 +256,7 @@
                                     <td><a class="btn btn-info" href="#">
                                         <i class="halflings-icon white edit"></i>
                                     </a>
-                                        <a class="btn btn-danger" href="#">
+                                        <a class="btn btn-danger" onclick="deleteCampo(@campo.getId);" href="#">
                                         <i class="halflings-icon white trash"></i>
                                     </a>
                                     </td>

@@ -165,22 +165,28 @@ function initMap() {
         window.location.href=window.location.href;
 
 
-    }function postAjax() {
+    }function crearCampo() {
 
-                  $.ajax({
-                    type: 'POST',
-                    url: "http://localhost:9000/user",
-                    data: JSON.stringify({
-                      "name":"joan",
-                      "tipo":"JefeDeCampo"
 
-                    }),
-                    error: function(e) {
-                      console.log(e);
-                    },
-                    dataType: "json",
-                    contentType: "application/json"
-                  });
+        var estado=document.getElementById("nombreCampoCrear").value;
+        //window.location.href=ruta;
+        var data1;
+        var idP= document.getElementById('idRegion').value;
+
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:9000/region/"+idP+"/campo",
+            data: JSON.stringify({
+
+                "name":""+ document.getElementById('nombreCampoCrear').value +""
+            }),
+            error: function(e) {
+                console.log(e);
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+        window.location.href=window.location.href;
                   }
 
     function crearPozo() {
@@ -220,6 +226,14 @@ function initMap() {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:9000/sensor/"+idP.valueOf()
+        });
+        window.location.href=window.location.href;
+        window.location.href=window.location.href;
+    };
+    function deleteCampo( idP) {
+        $.ajax({
+            type: 'DELETE',
+            url: "http://localhost:9000/campo/"+idP.valueOf()
         });
         window.location.href=window.location.href;
         window.location.href=window.location.href;
