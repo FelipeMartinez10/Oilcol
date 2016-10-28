@@ -142,27 +142,28 @@
                 </div>
             </div>
             <div class="box-content">
-                <div class="center" style="height:250px;" >
+                <div class="center" style="minheight:250px;" >
 
                     <table class="table table-hover table-bordered " >
                         <thead>
                             <tr>
-                                <th >Id Sensor</th>
+                                <th >Id</th>
                                 <th>Tipo</th>
-                                <th></th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                         @for(sensor <- sensores) {
                             <tr>
                                 <td><strong ><a href="../sensor/@sensor.getId">@sensor.getId</a></strong></td>
-                                <td class="center">@sensor.getTipo </td>
+                                <td class="center" >@sensor.getTipo </td>
                                 <td><a class="btn btn-info" href="#">
-                                    <i class="halflings-icon white edit"></i>
+                                    <i class="halflings-icon white edit" ></i>
                                 </a>
                                     <a class="btn btn-danger" onclick="deleteSensor(@sensor.getId);" href="#">
                                         <i class="halflings-icon white trash"></i>
-                                    </a></td>
+                                    </a>
+                                </td>
                             </tr>
                         }
 

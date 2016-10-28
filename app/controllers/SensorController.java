@@ -158,7 +158,15 @@ public class SensorController extends Controller {
     System.out.println("datos de temperatura: "+datosTemp);
       System.out.println("datos de consumo: "+datosConsumo);
       System.out.println("datos de caudal: "+datosCaudal);
-   return ok(views.html.sensor.render(sensor,datosTemp,datosCaudal,datosConsumo));
+      String tipoSensor="";
+      if(!datosTemp.equals(""))
+          tipoSensor="TemperaturaBomba";
+      if(!datosConsumo.equals(""))
+          tipoSensor="ConsumoEnergetico";
+      if(!datosCaudal.equals(""))
+          tipoSensor="BarrilesCrudo";
+
+   return ok(views.html.sensor.render(sensor,datosTemp,datosCaudal,datosConsumo, tipoSensor));
 
     }
 }

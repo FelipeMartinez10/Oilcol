@@ -1,4 +1,4 @@
-@(sensor: SensorEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
+@(sensor: SensorEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)(tipoSensor: String)
 @*
 * (sensor: SensorEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
 * (pozo: PozoEntity)(datosTemp: String)(datosCaudal: String)(datosConsumo: String)
@@ -32,7 +32,7 @@
                 <div class="box-content">
 
                     <div class="infoPozo" >
-                        <p><strong>Tipo</strong>: @sensor.getTipo</p>
+                        <p><strong>Tipo</strong>: @tipoSensor</p>
                         <p><strong>Emergencia</strong>: </p>
                             <!-- <ul >
 								<li>5 en producción</li>
@@ -54,8 +54,8 @@
 
                 <!-- LM Grafica Temperatura -->
 
-                @if(sensor.getTipo.equals(TipoSensor.BarrilesCrudo.toString)||sensor.getTipo.equals(TipoSensor.ConsumoEnergetico.toString)){
-                    @if(sensor.getTipo.equals(TipoSensor.ConsumoEnergetico.toString)){
+                @if(tipoSensor.equals(TipoSensor.BarrilesCrudo.toString)||tipoSensor.equals(TipoSensor.ConsumoEnergetico.toString)){
+                    @if(tipoSensor.equals(TipoSensor.ConsumoEnergetico.toString)){
                         <div class="box span4">
 
                             <div class="box-header">
