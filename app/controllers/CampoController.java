@@ -185,9 +185,9 @@ public class CampoController extends Controller{
             }
 
         }
-        String sConsumoP = (consumoProm+"").substring(0,(consumoProm+"").indexOf(".")+3);
-        String sCaudalP = (caudalProm+"").substring(0,(caudalProm+"").indexOf(".")+3);
-        String sTempProm =(tempProm+"").substring(0,(tempProm+"").indexOf(".")+3);
+        String sConsumoP = (consumoProm+"     ").substring(0,(consumoProm+"").indexOf(".")+3);
+        String sCaudalP = (caudalProm+"    ").substring(0,(caudalProm+"").indexOf(".")+3);
+        String sTempProm =(tempProm+"      ").substring(0,(tempProm+"").indexOf(".")+3);
 
         return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+""));
 
