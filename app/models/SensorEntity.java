@@ -17,7 +17,7 @@ public class SensorEntity extends Model {
     public static Finder<Long, SensorEntity> FINDER = new Finder<>(SensorEntity.class);
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator = "Sensor")
+    @GeneratedValue(strategy= GenerationType.AUTO,generator = "Sensor")
     private Long id;
     private TipoSensor tipo;
 
@@ -25,7 +25,7 @@ public class SensorEntity extends Model {
     @JsonBackReference
     private PozoEntity pozo;
 
-    @OneToMany(mappedBy = "sensor")
+    @OneToMany(mappedBy = "sensor", cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<InformeEntity > informes;
 
     public SensorEntity()
