@@ -55,13 +55,12 @@ create table reporteentity (
 create sequence Reporte;
 
 create table sensorentity (
-  id                            bigint not null,
+  id                            bigserial not null,
   tipo                          integer,
   pozo_id                       bigint,
   constraint ck_sensorentity_tipo check (tipo in (0,1,2)),
   constraint pk_sensorentity primary key (id)
 );
-create sequence Sensor;
 
 create table usuarioentity (
   id                            bigint not null,
@@ -137,7 +136,6 @@ drop table if exists reporteentity cascade;
 drop sequence if exists Reporte;
 
 drop table if exists sensorentity cascade;
-drop sequence if exists Sensor;
 
 drop table if exists usuarioentity cascade;
 drop sequence if exists Usuario;
