@@ -208,7 +208,7 @@ function initMap() {
             type: 'DELETE',
             url: "http://localhost:9000/pozo/"+idP.valueOf()
         });
-        window.setTimeout(window.location.href=window.location.href, 2000);
+        window.setTimeout(window.location.href=window.location.href, 8000);
     };
     function deleteSensor( idP) {
         $.ajax({
@@ -224,3 +224,36 @@ function initMap() {
         });
         window.setTimeout(window.location.href=window.location.href, 2000);
     };
+    function perra(idP) {
+        swal({
+            title: 'Desea eliminar el pozo '+idP+'?',
+            text: "No se podra revertir esta accion!",
+            type: 'Peligro',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(function() {
+            swal(
+                'Borrado!',
+                'El pozo fue eliminado correctamente.',
+                'success'
+            )
+            window.setTimeout(deletePozo(idP),120000);
+
+        }, function(dismiss) {
+            // dismiss can be 'cancel', 'overlay',
+            // 'close', and 'timer'
+            if (dismiss === 'cancel') {
+                swal(
+                    'Cancelado',
+                    'El pozo esta a salvo :)',
+                    'error'
+                )
+            }
+        })
+    }
