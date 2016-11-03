@@ -435,52 +435,6 @@
 
 
 
-        <div class="modal fade" id="dialogoCrearPozo" role="dialog">
-            <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Crear Pozo</h4>
-                    </div>
-                    <div class="modal-body">
-                            <!-- <form  class="contact-form" name="contact-form" method="post"> -->
-                            <!-- <form action="php/guardarTexto.php" target="_blank" class="contact-form" name="contact-form" method="post"> -->
-                            <!-- <form  class="contact-form" name="contact-form" onclick="guardarTexto()" > -->
-                        <form  class="contact-form" name="contact-form" method="post" >
-                            <div class="row">
-                                <div class="span3">
-                                    <input id="estadoPozoCrear" type="text" name="estadoPozoCrear" placeholder="Estado pozo" data-toggle="tooltip" title="Debe ser Produccion o Clausurado o Abierto o Parado">
-                                </div>
-                                <div class="span3">
-                                    <input id="LongitudPozoCrear" type="number" name="LongitudPozoCrear" placeholder="longitud pozo" data-toggle="tooltip" title="longitud">
-                                </div>
-                                <div class="span3">
-                                    <input id="LatitudPozoCrear" type="number" name="LatitudPozoCrear" placeholder="latitud pozo" data-toggle="tooltip" title="latitud">
-                                </div>
-
-                                <div class="span3">
-                                        <!-- <input id="guardarTexto" type="submit" name="submit" value="Guardar Texto" class="btn btn-send"> -->
-                                    <div href="#" onclick="crearPozo();"><button id="crearPozo" class="btn"  data-dismiss="modal">Crear Pozo</button></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-
-
-
     <script src="@routes.Assets.versioned("js/jquery-1.9.1.min.js")"></script>
     <script src="@routes.Assets.versioned("js/jquery-migrate-1.0.0.min.js")"></script>
     <script src="@routes.Assets.versioned("js/jquery-ui-1.10.0.custom.min.js")"></script>

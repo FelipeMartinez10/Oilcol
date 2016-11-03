@@ -189,8 +189,6 @@ function initMap() {
     function crearPozo() {
 
         var estado=document.getElementById("estadoPozoCrear").value;
-        //window.location.href=ruta;
-        var data1;
         var idP= document.getElementById('idCampo').innerHTML;
 
         $.ajax({
@@ -198,7 +196,7 @@ function initMap() {
             url: "http://localhost:9000/campos/"+idP+"/pozo",
             data: JSON.stringify({
 
-                "estado":""+ document.getElementById('estadoPozoCrear').value +"",
+                "estado":""+ estado +"",
                 "longitud":""+ document.getElementById('LongitudPozoCrear').value +"",
                 "latitud":""+ document.getElementById('LatitudPozoCrear').value +""
 
