@@ -25,7 +25,7 @@ public class PozoEntity extends Model {
     @JsonBackReference
     private CampoEntity campo;
 
-    @OneToMany(mappedBy = "pozo")
+    @OneToMany(mappedBy = "pozo",cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<SensorEntity > sensores;
 
     private double longitud;

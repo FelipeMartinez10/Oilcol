@@ -1,6 +1,5 @@
 package models;
 
-import akka.io.TcpConnection;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -25,7 +24,7 @@ public class CampoEntity extends Model
     @JsonBackReference
     private RegionEntity region;
 
-    @OneToMany(mappedBy = "campo")
+    @OneToMany(mappedBy = "campo",cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<PozoEntity > pozos;
 
     public CampoEntity()

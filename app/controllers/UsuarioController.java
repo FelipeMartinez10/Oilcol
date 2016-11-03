@@ -82,6 +82,8 @@ public class UsuarioController extends Controller {
                     antiguo.setId(user.getId());
                     antiguo.setName(user.getName());
                     antiguo.setTipo(user.getTipo());
+                    antiguo.setEmail(user.getEmail());
+                    antiguo.setPassword(user.getPassword());
                     antiguo.update();
                     return antiguo;
                 }
@@ -114,8 +116,9 @@ public class UsuarioController extends Controller {
         public String password;
 
         public String validate() {
-            if (!email.equals("a@a.com") && !password.equals("a") ) {
-                    return "Invalid user or password";
+            if (UsuarioEntity.authenticate(email, password) == null || email.equalsIgnoreCase("admin@admin.com"))
+            {
+                return "Invalid user or password";
             }
             return null;
         }

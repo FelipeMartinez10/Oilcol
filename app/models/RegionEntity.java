@@ -20,7 +20,7 @@ public class RegionEntity extends Model
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "region")
+    @OneToMany(mappedBy = "region",cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<CampoEntity> campos;
 
     @ManyToOne

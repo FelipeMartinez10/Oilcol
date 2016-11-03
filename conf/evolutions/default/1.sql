@@ -66,6 +66,8 @@ create table usuarioentity (
   id                            bigint not null,
   name                          varchar(255),
   tipo                          integer,
+  email                         varchar(255),
+  password                      varchar(255),
   oil_col_id                    bigint,
   campo_id                      bigint,
   constraint ck_usuarioentity_tipo check (tipo in (0,1)),

@@ -18,6 +18,8 @@ public class UsuarioEntity extends Model
     private Long id;
     private String name;
     private TipoUsuario tipo;
+    private String email;
+    private String password;
 
     @ManyToOne
     private OilColEntity oilCol;
@@ -30,17 +32,21 @@ public class UsuarioEntity extends Model
         this.id=null;
         this.name ="NO NAME";
         this.tipo = null;
+        this.email = "NO_EMAIL";
+        this.password="NO_PASSWORD";
     }
     public UsuarioEntity(Long id) {
         this();
         this.id = id;
     }
 
-    public UsuarioEntity(Long id, String name, OilColEntity oilCol, String tipo)
+    public UsuarioEntity(Long id, String name, OilColEntity oilCol, String tipo, String email, String password)
     {
         this.oilCol = oilCol;
         this.id = id;
         this.name = name;
+        this.email= email;
+        this.password=password;
         if(TipoUsuario.JefeDeCampo.toString().equalsIgnoreCase(tipo))
             this.tipo = TipoUsuario.JefeDeCampo;
         else
@@ -58,6 +64,20 @@ public class UsuarioEntity extends Model
 
     public String getName() {
         return name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
     }
 
     public void setName(String name) {
@@ -89,12 +109,18 @@ public class UsuarioEntity extends Model
         else this.campo = null;
     }
 
+    public static UsuarioEntity authenticate(String email, String password) {
+        return FINDER.where().eq("email", email)
+                .eq("password", password).findUnique();
+    }
+
     @Override
     public String toString() {
         return "UsuarioEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", tipo='" + tipo.toString() + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

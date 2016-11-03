@@ -163,7 +163,7 @@ function initMap() {
 
         var estado=document.getElementById('nombreCampoCrear').value;
         var idP=document.getElementById('selectError').value;
-        var s = idP.split(" ")
+        var s = idP.split(" ");
         $.ajax({
             type: 'POST',
             url: "http://localhost:9000/region/"+s[0]+"/campo",
