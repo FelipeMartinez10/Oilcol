@@ -11,6 +11,7 @@
  *@
 @main("Welcome to Play") {
 
+
     <ul class="breadcrumb">
         <li>
             <i class="icon-home"></i>
@@ -272,7 +273,41 @@
             </div>
         </div>
 
+        <div class="modal fade" id="dialogoCrearCampo" role="dialog">
+                    <div class="box-header" data-original-title>
+                        <h2><span class="break"></span>Agregar Campo</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Nombre del campo</label>
+                                    <div class="controls">
+                                        <input id="nombreCampoCrear" class="input-xlarge focused" id="focusedInput" type="text" value="Nombre del campo">
+                                    </div>
+                                </div>
 
+                                <div class="control-group">
+                                    <label class="control-label" for="selectError">Seleccionar la region</label>
+                                    <div class="controls">
+                                        <select id="selectError" data-rel="chosen">
+                                            @for(region <- regiones) {
+                                                <option>@region.getId @region.getName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" onclick="crearCampo();">Save changes</button>
+                                    <button class="btn">Cancel</button>
+                                </div>
+                            </fieldset>
+                        </form>
+            </div>
+        </div>
 
     </div><!--/row-->
 

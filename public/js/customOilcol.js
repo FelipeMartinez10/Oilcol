@@ -167,18 +167,15 @@ function initMap() {
 
     }function crearCampo() {
 
-
-        var estado=document.getElementById("nombreCampoCrear").value;
-        //window.location.href=ruta;
-        var data1;
-        var idP= document.getElementById('idRegion').value;
-
+        var estado=document.getElementById('nombreCampoCrear').value;
+        var idP=document.getElementById('selectError').value;
+        var s = idP.split(" ")
         $.ajax({
             type: 'POST',
-            url: "http://localhost:9000/region/"+idP+"/campo",
+            url: "http://localhost:9000/region/"+s[0]+"/campo",
             data: JSON.stringify({
 
-                "name":""+ document.getElementById('nombreCampoCrear').value +""
+                "name":""+ estado +""
             }),
             error: function(e) {
                 console.log(e);

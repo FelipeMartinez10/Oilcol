@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html"><span>OILCOL</span></a>
+                    <a class="brand" href="../regiones"><span>OILCOL</span></a>
 
                         <!-- start: Header Menu -->
                     <div class="nav-no-collapse header-nav">
@@ -351,17 +351,10 @@
                     </div>
                 </noscript>
 
-
-
         <div id="content" class="span10">
 
 
-
-
-
             @content
-
-
 
 
 
@@ -422,9 +415,8 @@
                         <form  class="contact-form" name="contact-form" method="post" >
                             <div class="row">
                                 <div class="span3">
-                                    <input id="tipoSensorCrear" type="text" name="tipoSensorCrear" placeholder="Tipo sensor" data-toggle="tooltip" title="Debe ser TemperaturaBomba o BarrilesCrudo o ConsumoEnergetico">
+                                    <input id="tipoSensorCrear" type="text" name="tipoSensorCrear" placeholder="Tipo sensor" data-toggle="tooltip" value="Debe ser TemperaturaBomba o BarrilesCrudo o ConsumoEnergetico">
                                 </div>
-
 
                                 <div class="span3">
                                         <!-- <input id="guardarTexto" type="submit" name="submit" value="Guardar Texto" class="btn btn-send"> -->
@@ -485,41 +477,7 @@
 
 
 
-        <div class="modal fade" id="dialogoCrearCampo" role="dialog">
-            <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Crear Campo</h4>
-                    </div>
-                    <div class="modal-body">
-                            <!-- <form  class="contact-form" name="contact-form" method="post"> -->
-                            <!-- <form action="php/guardarTexto.php" target="_blank" class="contact-form" name="contact-form" method="post"> -->
-                            <!-- <form  class="contact-form" name="contact-form" onclick="guardarTexto()" > -->
-                        <form  class="contact-form" name="contact-form" method="post" >
-                            <div class="row">
-                                <div class="span3">
-                                    <input id="idRegion" type="text" name="idRegion" placeholder="Codigo Region" data-toggle="tooltip" title="Ingresa el id de la region">
-                                </div>
-                                <div class="span3">
-                                    <input id="nombreCampoCrear" type="text" name="nombreCampoCrear" placeholder="Nombre Campo" data-toggle="tooltip" title="Ingresa el nombre del campo">
-                                </div>
-                                <div class="span3">
-                                        <!-- <input id="guardarTexto" type="submit" name="submit" value="Guardar Texto" class="btn btn-send"> -->
-                                    <div href="#" onclick="crearCampo();"><button id="crearCampo" class="btn"  data-dismiss="modal">Crear Campo</button></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
 
 
