@@ -126,7 +126,7 @@ public class UsuarioController extends Controller {
     }
     public Result login()
     {
-        return ok(views.html.login.render(form(Login.class)));
+        return ok(views.html.login.render(form(Login.class),false));
     }
     public Result logout()
     {
@@ -140,7 +140,7 @@ public class UsuarioController extends Controller {
     public Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
         if (loginForm.hasErrors()) {
-            return badRequest(views.html.login.render(loginForm));
+            return badRequest(views.html.login.render(loginForm,true));
         } else {
             session().clear();
             session("email", loginForm.get().email);

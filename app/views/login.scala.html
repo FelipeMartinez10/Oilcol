@@ -1,10 +1,11 @@
-@(form: Form[UsuarioController.Login])
+@(form: Form[UsuarioController.Login])(bol:Boolean)
 <!DOCTYPE html>
 <html >
     <head>
         <meta charset="UTF-8">
         <title>Oilcol</title>
         <link rel="stylesheet" href="@routes.Assets.versioned("css/style2.css")">
+        <link id="animatedStyle" href="@routes.Assets.versioned("css/animate.css")" rel="stylesheet">
     </head>
     <body>
 
@@ -18,7 +19,10 @@
                 </video>
                 <div class="box">
                 @helper.form(routes.UsuarioController.authenticate) {
-                    <h1>Login</h1>
+                    @if(bol==true){<h1 id="loqu" class="animated shake" >Login</h1>
+                    }else{
+                        <h1>Login</h1>
+                    }
                     <input type="email" name="email" placeholder="Email" value="@form("email").value">
                     <input type="password" name="password" placeholder="Password"value="@form("password").value">
                     <button>Login</button>
