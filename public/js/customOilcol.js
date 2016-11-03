@@ -136,17 +136,12 @@ function initMap() {
         var ruta = rutaT +'/reporte/'+fecha1+'_'+fecha2;
 
         window.location.href=ruta;
-
-
+        
     }
     function crearSensor( )
     {
-
         var tipo=document.getElementById("tipoSensorCrear").value;
 
-        alert(tipo);
-        //window.location.href=ruta;
-        var data1;
     var idP= document.getElementById('idPozo').innerHTML;
 
         $.ajax({
@@ -154,7 +149,7 @@ function initMap() {
             url: "http://localhost:9000/pozo/"+idP+"/sensor",
             data: JSON.stringify({
 
-                "tipo":""+ document.getElementById('tipoSensorCrear').value +""
+                "tipo":""+ tipo +""
             }),
             error: function(e) {
                 console.log(e);
@@ -162,8 +157,7 @@ function initMap() {
             dataType: "json",
             contentType: "application/json"
         });
-        window.location.href=window.location.href;
-
+        window.setTimeout(window.location.href=window.location.href, 2000);
 
     }function crearCampo() {
 
@@ -183,7 +177,7 @@ function initMap() {
             dataType: "json",
             contentType: "application/json"
         });
-        window.location.href=window.location.href;
+        window.setTimeout(window.location.href=window.location.href, 2000);
                   }
 
     function crearPozo() {
@@ -207,29 +201,26 @@ function initMap() {
             dataType: "json",
             contentType: "application/json"
         });
-        window.location.href=window.location.href;
+        window.setTimeout(window.location.href=window.location.href, 2000);
     };
     function deletePozo( idP) {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:9000/pozo/"+idP.valueOf()
         });
-        window.location.href=window.location.href;
-        window.location.href=window.location.href;
+        window.setTimeout(window.location.href=window.location.href, 2000);
     };
     function deleteSensor( idP) {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:9000/sensor/"+idP.valueOf()
         });
-        window.location.href=window.location.href;
-        window.location.href=window.location.href;
+        window.setTimeout(window.location.href=window.location.href, 2000);
     };
     function deleteCampo( idP) {
         $.ajax({
             type: 'DELETE',
             url: "http://localhost:9000/campo/"+idP.valueOf()
         });
-        window.location.href=window.location.href;
-        window.location.href=window.location.href;
+        window.setTimeout(window.location.href=window.location.href, 2000);
     };

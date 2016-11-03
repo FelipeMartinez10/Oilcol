@@ -132,7 +132,6 @@
         </div><!--/span-->
         <!-- Tabla sensores -->
         <div class="box span4">
-
             <div class="box-header">
                 <h2><i class="halflings-icon white list-alt"></i><span class="break"></span>Sensores</h2>
                 <div class="box-icon">
@@ -143,7 +142,6 @@
             </div>
             <div class="box-content">
                 <div class="center" style="minheight:250px;" >
-
                     <table class="table table-hover table-bordered " >
                         <thead>
                             <tr>
@@ -166,17 +164,41 @@
                                 </td>
                             </tr>
                         }
-
                         </tbody>
                     </table>
                 </div>
             </div>
-
-
-
-
-
         </div><!--/span-->
+
+        <div class="modal fade" id="dialogoCrearSensor" role="dialog">
+            <div class="box-header" data-original-title>
+                <h2><i class="halflings-icon white edit"></i><span class="break"></span>Agregar Sensor</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-close" data-dismiss="modal"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="selectError">Seleccionar tipo de sensor</label>
+                            <div class="controls">
+                                <select id="tipoSensorCrear" data-rel="chosen">
+                                    <option >TemperaturaBomba</option>
+                                    <option>BarrilesCrudo</option>
+                                    <option>ConsumoEnergetico</option>
+                                    <option>Parado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" onclick="crearSensor();">Crear Sensor</button>
+                            <button class="btn" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
 
     </div><!--/row-->
 
