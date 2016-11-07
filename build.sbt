@@ -14,7 +14,9 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.postgresql" % "postgresql" % "9.4-1206-jdbc42",
   "org.apache.shiro" % "shiro-web" % "1.2.3",
-  "com.sun.jersey" % "jersey-servlet" % "1.13"
+  "com.sun.jersey" % "jersey-servlet" % "1.13",
+  "be.objectify" %% "deadbolt-java" % "2.5.3"
+
 )
 
 
