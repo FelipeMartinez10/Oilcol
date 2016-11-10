@@ -9,7 +9,7 @@
             <a href="../regiones">Home</a>
             <i class="icon-angle-right"></i>
         </li>
-        <li><a href="../regiones">Region @campo.getRegion.getId</a><i class="icon-angle-right"></i></li>
+        <li><a href="../regiones">Region @campo.getRegion.getName</a><i class="icon-angle-right"></i></li>
         <li><a href="#">Campo @campo.getId</a></li>
         <p id ="idCampo" hidden>@campo.getId</p>
 
@@ -38,7 +38,7 @@
 								<li>1 abiertos</li>
 								<li>2 parados</li>
 							</ul> -->
-                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte">@fecha2</strong></p>
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte" style="cursor:pointer;">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte" style="cursor:pointer;">@fecha2 <i class="halflings-icon pencil"></i></strong> </p>
                     <p></p>
                     <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
                     <p><strong>Caudal promedio</strong>: @caudalP  Barriles</p>
@@ -67,7 +67,7 @@
             </div>
             <div class="box-content">
 
-                <div class="center" style="height:400px;" >
+                <div class="center" style="min-height:400px;" >
                     <div id="infoMapaCampo" hidden>@for(pozo <- pozos) {@pozo.getLatitud,@pozo.getLongitud+}</div>
                     <div id="mapaCampo"> </div>
                     <div id="tablaPozos" hidden>
@@ -87,7 +87,7 @@
                                     <td><a class="btn btn-info"  href="#">
                                         <i class="halflings-icon white edit"></i>
                                     </a>
-                                        <a class="btn btn-danger" onclick="perra(@pozo.getId);" href="#">
+                                        <a class="btn btn-danger" onclick="deletePozoP(@pozo.getId);" href="#">
                                             <i class="halflings-icon white trash"></i>
                                         </a></td>
                                 </tr>
@@ -171,6 +171,7 @@
 
         </div><!--/span-->
 
+
         <div class="modal fade" id="dialogoCrearPozo" role="dialog">
             <div class="box-header" data-original-title>
                 <h2><i class="halflings-icon white edit"></i><span class="break"></span>Agregar Pozo</h2>
@@ -207,8 +208,8 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" onclick="crearPozo();">Crear Pozo</button>
-                            <button class="btn" data-dismiss="modal">Cancel</button>
+                            <button  class="btn btn-primary" data-dismiss="modal" onclick="crearPozo()">Crear Pozo</button>
+                            <button class="btn" data-dismiss="modal">Cancelar</button>
                         </div>
                     </fieldset>
                 </form>

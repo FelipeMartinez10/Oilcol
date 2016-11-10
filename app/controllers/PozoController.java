@@ -181,8 +181,8 @@ public class PozoController extends Controller {
             consumoProm=consumoProm/cantidades[2];
         }
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        String fR1=formato.format(new Date(1474919589038L));
-        String fR2=formato.format(new Date(1480103589039L));
+        String fR1=formato.format(new Date(System.currentTimeMillis()-2592000000L));
+        String fR2=formato.format(new Date(System.currentTimeMillis()));
 
         String sConsumoP = (consumoProm+"   ").substring(0,(consumoProm+"").indexOf(".")+3);
         String sCaudalP = (caudalProm+"   ").substring(0,(caudalProm+"").indexOf(".")+3);

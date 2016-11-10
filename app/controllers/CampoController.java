@@ -57,10 +57,11 @@ public class CampoController extends Controller{
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
         JsonNode nCamp = request().body().asJson();
         CampoEntity campo = Json.fromJson( nCamp , CampoEntity.class );
+
         return CompletableFuture.supplyAsync(
                 ()->{
                     RegionEntity region = RegionEntity.FINDER.byId(idRegion);
-                    region.addCampo(campo);
+                    //region.addCampo(campo);
                     campo.setRegion(region);
                     region.update();
                     campo.save();
@@ -192,8 +193,8 @@ public class CampoController extends Controller{
         String sTempProm =(tempProm+"      ").substring(0,(tempProm+"").indexOf(".")+3);
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        String fR1=formato.format(new Date(1474919589038L));
-        String fR2=formato.format(new Date(1480103589039L));
+        String fR1=formato.format(new Date(System.currentTimeMillis()-2592000000L));
+        String fR2=formato.format(new Date(System.currentTimeMillis()));
 
         return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+"",fR1,fR2));
 

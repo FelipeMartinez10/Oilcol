@@ -36,6 +36,10 @@
         <link rel="shortcut icon" href="@routes.Assets.versioned("img/favicon.ico")">
             <!-- end: Favicon -->
 
+        <!-- LM fechas -->
+        <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+        <script src="https://unpkg.com/flatpickr"></script>
+
     </head>
     <body>
             <!-- start: Header -->
@@ -366,37 +370,33 @@
 
 
         <div class="modal fade" id="dialogoReporte" role="dialog">
-            <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cambiar Fechas</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <form  class="contact-form"  >
-                            <div class="row">
-                                <div class="span3">
-                                    <input id="fecha1" type="text" name="fecha1" placeholder="Fecha inicial" data-toggle="tooltip" title="La fecha Inicial">
-                                </div>
-                                <div class="span3">
-                                    <input id="fecha2" type="text" name="fecha2" placeholder="Fecha final" data-toggle="tooltip" title="La fecha final">
-                                </div>
-
-                                <div class="span3">
-                                        <!-- <input id="guardarTexto" type="submit" name="submit" value="Guardar Texto" class="btn btn-send"> -->
-                                    <div href="#" onclick="reporteFecha();"><button id="reporteFecha" class="btn"  data-dismiss="modal">Crear Reporte</button></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
+            <div class="box-header" data-original-title>
+                <h2><i class="halflings-icon white edit"></i><span class="break"></span>Generar reporte</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-close" data-dismiss="modal"><i class="halflings-icon white remove"></i></a>
                 </div>
-
+            </div>
+            <div class="box-content">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="inputFechaInicial">Fecha inicial</label>
+                            <div class="controls">
+                                <input id="fecha1" class="flatpickr" type="text" style="cursor:pointer;"  placeholder="Selecciona una fecha...">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputFechaInicial" >Fecha final</label>
+                            <div class="controls">
+                                <input id="fecha2" class="flatpickr" type="text" style="cursor:pointer" placeholder="Selecciona una fecha...">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="reporteFecha();">Generar reporte</button>
+                            <button class="btn" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
 
@@ -437,7 +437,10 @@
         <script src="@routes.Assets.versioned("js/customOilcol.js")"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbfejr5h-8dPn3SKnSsD7shRH8i2gxnPo&callback=initMap">
         </script>
-
+            <!-- LM fechas -->
+        <script type="text/javascript">
+            flatpickr(".flatpickr");
+        </script>
             <!-- end: JavaScript-->
 
 

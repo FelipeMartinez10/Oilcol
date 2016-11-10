@@ -136,7 +136,6 @@ function initMap() {
         var ruta = rutaT +'/reporte/'+fecha1+'_'+fecha2;
 
         window.location.href=ruta;
-        
     }
     function crearSensor( )
     {
@@ -161,15 +160,15 @@ function initMap() {
 
     }function crearCampo() {
 
-        var estado=document.getElementById('nombreCampoCrear').value;
-        var idP=document.getElementById('selectError').value;
-        var s = idP.split(" ");
+        var name=document.getElementById('nombreCampoCrear').value;
+        var regionInfo=document.getElementById('selectRegion').value;
+        var s = regionInfo.split(" ");
         $.ajax({
             type: 'POST',
             url: "http://localhost:9000/region/"+s[0]+"/campo",
             data: JSON.stringify({
 
-                "name":""+ estado +""
+                "name":""+ name +""
             }),
             error: function(e) {
                 console.log(e);
@@ -224,7 +223,7 @@ function initMap() {
         });
         window.setTimeout(window.location.href=window.location.href, 2000);
     };
-    function perra(idP) {
+    function deletePozoP(idP) {
         swal({
             title: 'Desea eliminar el pozo '+idP+'?',
             text: "No se podra revertir esta accion!",

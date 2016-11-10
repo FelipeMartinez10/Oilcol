@@ -9,7 +9,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -144,11 +146,11 @@ public class RegionController extends Controller {
             caudal.add(cCaudal);
             numPozos.add(cPozos);
 
-
-
-
         }
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fR1=formato.format(new Date(System.currentTimeMillis()-2592000000L));
+        String fR2=formato.format(new Date(System.currentTimeMillis()));
 
-        return ok(views.html.regiones.render(regiones, numPozos, consumo, temperaturaPromedio,caudal, listaPozo, listaCampos));
+        return ok(views.html.regiones.render(regiones, numPozos, consumo, temperaturaPromedio,caudal, listaPozo, listaCampos, fR1, fR2));
     }
 }

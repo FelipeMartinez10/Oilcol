@@ -14,6 +14,7 @@
             <a href="../regiones">Home</a>
             <i class="icon-angle-right"></i>
         </li>
+        <li><a href="../regiones">Region @pozo.getCampo.getRegion.getName</a><i class="icon-angle-right"></i></li>
         <li><a href="../campo/@pozo.getCampo.getId">Campo @pozo.getCampo.getId</a><i class="icon-angle-right"></i></li>
         <li><a href="#">Pozo @pozo.getId</a></li>
         <p id ="idPozo" hidden>@pozo.getId</p>
@@ -33,7 +34,7 @@
                 <div class="infoPozo" >
                     <p><strong>Emergencia actual</strong>: False</p>
                     <p><strong>Estado actual</strong>: @pozo.getEstado</p>
-                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte">@fecha2</strong></p>
+                    <p>Los siguientes calculos muestran los datos entre las fecha <strong  id="fecha1Fija" data-toggle="modal" href="#dialogoReporte" style="cursor:pointer;">@fecha1</strong> y <strong id="fecha2Fija" data-toggle="modal" href="#dialogoReporte" style="cursor:pointer;">@fecha2 <i class="halflings-icon pencil"></i></strong> </p>
                     <p></p>
                     <p><strong>Número Emergencias</strong>: @numEmergencias</p>
                     <p><strong>Temperatura promedio</strong>: @temperaturaP  C</p>
@@ -192,7 +193,7 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" onclick="crearSensor();">Crear Sensor</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="crearSensor();">Crear Sensor</button>
                             <button class="btn" data-dismiss="modal">Cancel</button>
                         </div>
                     </fieldset>
