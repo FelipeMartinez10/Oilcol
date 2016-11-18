@@ -103,10 +103,6 @@ public class EncriptadoEntity extends Model
 
     public boolean validar()
     {
-        System.out.println(mensajeCodificado);
-        System.out.println(mensajeDesencriptado);
-        System.out.println(getHashMensaje(mensajeDesencriptado));
-        System.out.println(new String(hashMensaje));
         return getHashMensaje(mensajeDesencriptado).equals(new String(hashMensaje));
     }
 

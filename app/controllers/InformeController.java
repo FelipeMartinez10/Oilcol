@@ -44,7 +44,6 @@ public class InformeController extends Controller {
         {
             String mensaje = encriptado.getMensajeDesencriptado();
             JsonNode json = Json.parse(mensaje);
-            System.out.print(mensaje);
             InformeEntity informe = Json.fromJson(json, InformeEntity.class);
 
             return CompletableFuture.supplyAsync(
