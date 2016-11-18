@@ -5,10 +5,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.*;
 import play.libs.Json;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -73,6 +73,28 @@ public class CampoController extends Controller{
                 }
         );
     }
+    public CompletionStage<Result> createCampoEnRegionJefe(Long idRegion, Long idUsuario){
+        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+        JsonNode nCamp = request().body().asJson();
+        CampoEntity campo = Json.fromJson( nCamp , CampoEntity.class );
+
+        return CompletableFuture.supplyAsync(
+                ()->{
+                    RegionEntity region = RegionEntity.FINDER.byId(idRegion);
+                    UsuarioEntity user = UsuarioEntity.FINDER.byId(idUsuario);
+                    campo.setRegion(region);
+                    region.update();
+                    campo.save();
+                    user.setCampo(campo);
+                    user.update();
+                    return campo;
+                }
+        ).thenApply(
+                CampoEntity -> {
+                    return ok(Json.toJson(CampoEntity));
+                }
+        );
+    }
     public CompletionStage<Result> deleteCampo(Long idP){
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
 
@@ -113,6 +135,7 @@ public class CampoController extends Controller{
     public Result campoHtml(Long idCampo)
     {
         CampoEntity campo = CampoEntity.FINDER.byId(idCampo);
+
         double total1=0;
         double total2=0;
         String datosTemp = "";
@@ -195,6 +218,9 @@ public class CampoController extends Controller{
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fR1=formato.format(new Date(System.currentTimeMillis()-2592000000L));
         String fR2=formato.format(new Date(System.currentTimeMillis()));
+
+       // Boolean bools = false;
+       // if(tienePermiso==1) {bools=true;}
 
         return ok(views.html.campo.render(campo, pozoos, datosTemp, datosCaudal, datosConsumo, pozos, numEmergencias+"", sTempProm, sCaudalP, sConsumoP, dato1+"", dato2+"",fR1,fR2));
 

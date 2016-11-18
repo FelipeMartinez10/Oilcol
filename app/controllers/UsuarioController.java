@@ -4,6 +4,7 @@ import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.CampoEntity;
+import models.TipoUsuario;
 import models.UsuarioEntity;
 import play.data.Form;
 import play.libs.Json;
@@ -144,10 +145,17 @@ public class UsuarioController extends Controller {
         } else {
             session().clear();
             session("email", loginForm.get().email);
-            return redirect(
-                    routes.RegionController.regionesHtml()
-
-            );
+            UsuarioEntity user = UsuarioEntity.authenticate(loginForm.get().email,loginForm.get().password);
+            if(user==null)
+            {
+            System.out.println("el usuario es nulo");
+            }
+            if(TipoUsuario.JefeDeCampo.toString().equalsIgnoreCase(user.getTipo()) )
+            {
+                System.out.println("el usuario es jefe de campo");
+                return redirect(routes.CampoController.campoHtml(user.getCampo().getId()));
+            }
+            return redirect(routes.RegionController.regionesHtml());
         }
     }
 
