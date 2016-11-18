@@ -11,6 +11,12 @@ create table campoentity (
 );
 create sequence Campo;
 
+create table encriptado_entity (
+  mensaje_codificado            varchar(255),
+  hash_mensaje                  bytea,
+  mensaje_desencriptado         varchar(255)
+);
+
 create table informeentity (
   id                            bigint not null,
   tipo                          varchar(255),
@@ -121,6 +127,8 @@ alter table if exists usuarioentity drop constraint if exists fk_usuarioentity_c
 
 drop table if exists campoentity cascade;
 drop sequence if exists Campo;
+
+drop table if exists encriptado_entity cascade;
 
 drop table if exists informeentity cascade;
 drop sequence if exists Informe;

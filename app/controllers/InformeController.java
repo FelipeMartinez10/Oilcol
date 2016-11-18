@@ -3,6 +3,7 @@ package controllers;
 import akka.dispatch.MessageDispatcher;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
+import models.EncriptadoEntity;
 import models.InformeEntity;
 import models.SensorEntity;
 import play.libs.Json;
@@ -35,19 +36,44 @@ public class InformeController extends Controller {
     }
 
     public CompletionStage<Result> createInforme(){
-        MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
+
         JsonNode n = request().body().asJson();
-        InformeEntity informe = Json.fromJson( n , InformeEntity.class ) ;
-        return CompletableFuture.supplyAsync(
-                ()->{
-                    informe.save();
-                    return informe;
-                }
-        ).thenApply(
-                informes -> {
-                    return ok(Json.toJson(informes));
-                }
-        );
+        EncriptadoEntity encriptado = Json.fromJson( n , EncriptadoEntity.class ) ;
+
+        if(encriptado.validar())
+        {
+            String mensaje = encriptado.getMensajeDesencriptado();
+            JsonNode json = Json.parse(mensaje);
+            System.out.print(mensaje);
+            InformeEntity informe = Json.fromJson(json, InformeEntity.class);
+
+            return CompletableFuture.supplyAsync(
+                    () ->
+                    {
+                        informe.save();
+                        return informe;
+                    }
+            ).thenApply(
+                    informes ->
+                    {
+                        return ok(Json.toJson(informes));
+                    }
+            );
+        }
+        else
+        {
+            return CompletableFuture.supplyAsync(
+                    () ->
+                    {
+                        return "Error con integridad";
+                    }
+            ).thenApply(
+                    informes ->
+                    {
+                        return ok(Json.toJson(informes));
+                    }
+            );
+        }
     }
 
     public CompletionStage<Result> createInformeDeSensor(Long idSensor){

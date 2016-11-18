@@ -237,12 +237,20 @@ function initMap() {
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false
         }).then(function() {
-            swal(
-                'Borrado!',
-                'El pozo fue eliminado correctamente.',
-                'success'
-            )
-            window.setTimeout(deletePozo(idP),120000);
+            //swal(
+              //  'Borrado!',
+                //'El pozo fue eliminado correctamente.',
+                //'success',
+
+            //)
+            swal({
+                title: "Borrado!",
+                text: "El pozo fue eliminado correctamente.",
+                timer: 5000,
+                showConfirmButton: false
+            });
+
+            deletePozo(idP);
 
         }, function(dismiss) {
             // dismiss can be 'cancel', 'overlay',
@@ -255,4 +263,5 @@ function initMap() {
                 )
             }
         })
+
     }
