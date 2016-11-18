@@ -9,6 +9,8 @@ import models.SensorEntity;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import static play.libs.Json.toJson;
@@ -19,18 +21,20 @@ public class InformeController extends Controller {
     private static SensorEntity ultimo;
     public CompletionStage<Result> getInformes() {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
-
+        List<InformeEntity> informes = InformeEntity.FINDER.all();
+        EncriptadoEntity encriptado =new EncriptadoEntity(informes.toString());
         return CompletableFuture.
-                supplyAsync(() -> { return InformeEntity.FINDER.all(); } ,jdbcDispatcher)
+                supplyAsync(() -> { return encriptado; } ,jdbcDispatcher)
                 .thenApply(informeEntities -> {return ok(toJson(informeEntities));}
                 );
     }
 
     public CompletionStage<Result> getInforme(Long idP) {
         MessageDispatcher jdbcDispatcher = AkkaDispatcher.jdbcDispatcher;
-
+        InformeEntity informe = InformeEntity.FINDER.byId(idP);
+        EncriptadoEntity encriptado =new EncriptadoEntity(informe.toString());
         return CompletableFuture.
-                supplyAsync(() -> { return InformeEntity.FINDER.byId(idP); } ,jdbcDispatcher)
+                supplyAsync(() -> { return encriptado; } ,jdbcDispatcher)
                 .thenApply(informes -> {return ok(toJson(informes));}
                 );
     }

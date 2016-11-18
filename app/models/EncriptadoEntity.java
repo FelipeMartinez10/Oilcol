@@ -35,6 +35,12 @@ public class EncriptadoEntity extends Model
         setMensajeCodificado(codificado);
         setHashMensaje(hashMensaje);
     }
+    public EncriptadoEntity(String decodificado)
+    {
+        setMensajeDesencriptado(decodificado);
+        mensajeCodificado=encriptar(decodificado);
+        hashMensaje=getHashMensaje(mensajeCodificado);
+    }
 
     public String getMensajeCodificado()
     {
@@ -101,25 +107,27 @@ public class EncriptadoEntity extends Model
         return base64EncryptedString;
     }
 
+
     public boolean validar()
     {
-        return getHashMensaje(mensajeDesencriptado).equals(new String(hashMensaje));
+        return new String(getHashMensaje(mensajeDesencriptado)).equals(new String(hashMensaje));
     }
 
-    private String getHashMensaje(String mensaje)
+    private byte[] getHashMensaje(String mensaje)
     {
         try
         {
             byte[] buffer= mensaje.getBytes();
             MessageDigest md5 = MessageDigest.getInstance(ALGORITMO);
             md5.update(buffer);
-            return new String(md5.digest());
+            return md5.digest();
         }
         catch (Exception e)
         {
             return null;
         }
     }
+
 
     public byte[] getHashMensaje()
     {
