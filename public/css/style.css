@@ -64,7 +64,9 @@
 	border-color: #43B5AD !important;
 	color: #fff;
 }
-
+.centered {
+	text-align: center;
+}
 .greenDark,
 .greenDark [class="box-header"],
 .greenDark.box,

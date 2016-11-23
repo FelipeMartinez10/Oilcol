@@ -1,13 +1,13 @@
 package controllers;
 
 import akka.dispatch.MessageDispatcher;
-import com.avaje.ebean.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import dispatchers.AkkaDispatcher;
 import models.*;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+
 import static play.libs.Json.toJson;
 
 /**
@@ -158,7 +159,7 @@ public class ReporteController extends Controller {
         );
     }
 
-
+    @Security.Authenticated(Secured.class)
     public Result getReportePozoHtml(Long idP, String fechas)
     {
 

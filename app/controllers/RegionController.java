@@ -7,6 +7,7 @@ import models.*;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 
 import java.text.SimpleDateFormat;
@@ -88,7 +89,7 @@ public class RegionController extends Controller {
                 }
         );
     }
-
+    @Security.Authenticated(Secured.class)
     public Result regionesHtml()
     {
 

@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <title>@title</title>
         <meta name="description" content="Bootstrap Metro Dashboard">
-        <meta name="author" content="Dennis Ji">
+        <meta name="author" content="Corei7">
         <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
             <!-- end: Meta -->
 
@@ -222,7 +222,7 @@
                                             <span class="avatar"><img src="@routes.Assets.versioned("img/avatar.jpg")" alt="Avatar"></span>
                                             <span class="header">
                                                 <span class="from">
-                                                    Dennis Ji
+                                                @ctx().session().get("email")
                                                 </span>
                                                 <span class="time">
                                                     6 min
@@ -306,7 +306,7 @@
                                 <!-- start: User Dropdown -->
                             <li class="dropdown">
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="halflings-icon white user"></i> Dennis Ji
+                                    <i class="halflings-icon white user"></i> @ctx().session().get("email")
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -333,8 +333,13 @@
                     <!-- start: Main Menu -->
                 <div id="sidebar-left" class="span2">
                     <div class="nav-collapse sidebar-nav">
-                        <ul class="nav nav-tabs nav-stacked main-menu">
+                        <div class="component-hero">
 
+                        </div>
+                        <ul class="nav nav-tabs nav-stacked main-menu">
+                            <p>  </p>
+                            <p class="centered"><img src="@routes.Assets.versioned("img/ing.png")" class="img-circle" width="60"></p>
+                            <li></li>
                             <li>
                                 <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Regiones</span><span class="label label-important"> 3 </span></a>
                                 <ul>
@@ -435,8 +440,8 @@
 
             <!-- LM Custom JS -->
         <script src="@routes.Assets.versioned("js/customOilcol.js")"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbfejr5h-8dPn3SKnSsD7shRH8i2gxnPo&callback=initMap">
-        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbfejr5h-8dPn3SKnSsD7shRH8i2gxnPo&callback=initMap"></script>
+
             <!-- LM fechas -->
         <script type="text/javascript">
             flatpickr(".flatpickr");
